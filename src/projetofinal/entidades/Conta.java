@@ -2,6 +2,7 @@ package projetofinal.entidades;
 
 import projetofinal.utilitarios.SaldoInsuficienteException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,8 +13,17 @@ public abstract class Conta {
     private List<String> historicoTransacoes;
 
     public Conta(String numero, Cliente proprietario) {
-        // verificar se o numero e unico
-        // verificar se o proprietario existe
+        //Pode checar no Banco se existe um numero repetido
+        if (numero == null || numero.isEmpty()) {
+            throw new IllegalArgumentException("Numero da conta invalido.");
+        }
+        if (proprietario == null) {
+            throw new IllegalArgumentException("Proprietario não pode ser nulo.");
+        }
+        this.numero = numero;
+        this.proprietario = proprietario;
+        this.saldo = 0;
+        this.historicoTransacoes = new ArrayList<>();
     }
 
     public String getNumero() {
@@ -59,7 +69,9 @@ public abstract class Conta {
     }
 
     @Override
-    public String toString(){
-        return "";
+    public String toString() {
+        return "Conta nº " + numero +
+                " | Titular: " + proprietario.getNome() +
+                " | Saldo: R$ " + String.format("%.2f", saldo);
     }
 }
