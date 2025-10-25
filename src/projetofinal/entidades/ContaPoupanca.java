@@ -3,11 +3,10 @@ package projetofinal.entidades;
 import projetofinal.utilitarios.SaldoInsuficienteException;
 
 public class ContaPoupanca extends Conta{
-    private double taxaRendimentoMensal;
+    final double TAXADERENDIMENTOMENSAL = 0.01;
 
-    public ContaPoupanca(String numero, Cliente proprietario, double taxaRendimentoMensal) {
+    public ContaPoupanca(String numero, Cliente proprietario) {
         super(numero, proprietario);
-        this.taxaRendimentoMensal = taxaRendimentoMensal;
     }
 
     @Override
@@ -49,13 +48,13 @@ public class ContaPoupanca extends Conta{
     }
 
     public void renderJuros(){
-        this.saldo *= (1+this.taxaRendimentoMensal);
+        this.saldo *= (1+this.TAXADERENDIMENTOMENSAL);
     }
 
     @Override
     public String toString() {
         return super.toString() +
-                String.format(" | Taxa de Rendimento(mensal): R$ %.2f", this.taxaRendimentoMensal);
+                String.format(" | Taxa de Rendimento(mensal): R$ %.2f", this.TAXADERENDIMENTOMENSAL);
 
     }
 }
