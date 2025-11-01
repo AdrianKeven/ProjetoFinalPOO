@@ -66,8 +66,27 @@ public class Cliente {
 
     @Override
     public String toString() {
-    return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cliente {")
+                .append("Nome='").append(nome).append('\'') // o \' e para imrpimir em aspas
+                .append(", CPF='").append(cpf).append('\'')
+                .append(", Endereço='").append(endereco).append('\'');
+
+        if (contas != null && !contas.isEmpty()) {
+            sb.append(", Contas=[");
+            for (Conta conta : contas) {
+                sb.append(conta).append(", "); // esta usando o to String do Conta
+            }
+            sb.setLength(sb.length() - 2); // remove a última vírgula e espaço do loop for
+            sb.append("]");
+        } else {
+            sb.append(", Contas=[]"); // Se conta for vazia ou null
+        }
+
+        sb.append("}");
+        return sb.toString();
     }
+
 }
 
 
