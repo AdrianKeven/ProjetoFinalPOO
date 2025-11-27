@@ -6,6 +6,7 @@ import projetofinal.entidades.ContaCorrente;
 import projetofinal.entidades.ContaPoupanca;
 import projetofinal.utilitarios.ClienteNaoEncontradoException;
 import projetofinal.utilitarios.ContaNaoEncontradaException;
+import projetofinal.utilitarios.SaldoInsuficienteException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,10 +46,12 @@ public class BancoService {
         if (tipoConta.equals("corrente")) {
             ContaCorrente retorno = new ContaCorrente(String.valueOf(this.proximoNumeroConta),cliente,limiteChequeEspecial);
             this.proximoNumeroConta++;
+            contas.put(retorno.getNumero(),retorno);
             return retorno;
         } else if (tipoConta.equals("poupanca")){
             ContaPoupanca retorno = new ContaPoupanca(String.valueOf(this.proximoNumeroConta),cliente);
             this.proximoNumeroConta++;
+            contas.put(retorno.getNumero(),retorno);
             return retorno;
         } else {
             throw new IllegalArgumentException("Tipo da conta nao encontrado (corrente ou poupanca)");
@@ -68,11 +71,11 @@ public class BancoService {
         buscarConta(numeroConta).depositar(valor);
     }
 
-    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException {
+    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException, SaldoInsuficienteException {
         buscarConta(numeroConta).sacar(valor);
     }
 
-    public void realizarTransferencia(String contaOrigem, String contaDestino,double valor) throws ContaNaoEncontradaException {
+    public void realizarTransferencia(String contaOrigem, String contaDestino,double valor) throws ContaNaoEncontradaException, SaldoInsuficienteException {
         buscarConta(contaOrigem).tranferir(buscarConta(contaDestino),valor);
     }
 
