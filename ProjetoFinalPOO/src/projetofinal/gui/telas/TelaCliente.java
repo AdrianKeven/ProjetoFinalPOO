@@ -42,7 +42,6 @@ public class TelaCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new java.awt.BorderLayout(10, 10));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -84,6 +83,11 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton7.setText("Listar Clientes ");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         Meio.add(jButton7);
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -135,6 +139,8 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        new TelaCadastrarCliente(this,true).setVisible(true);
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -150,6 +156,18 @@ public class TelaCliente extends javax.swing.JFrame {
         new TelaPrincipal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        TelaListaCliente tela = new TelaListaCliente(this, true);
+
+    tela.carregarTabela(
+        projetofinal.gui.GuiController.getBancoService().getClientes()
+    );
+
+    tela.setVisible(true);
+
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -137,7 +137,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotOpBancActionPerformed
 
     private void BotGerContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotGerContActionPerformed
-        // TODO add your handling code here:
+       
         new TelaContas().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotGerContActionPerformed
