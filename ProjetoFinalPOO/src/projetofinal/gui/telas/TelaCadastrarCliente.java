@@ -18,6 +18,7 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
     public TelaCadastrarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

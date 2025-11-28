@@ -43,6 +43,10 @@ public class Cliente {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+    
+    public void setEndereco(String endereco){
+        this.endereco = endereco;
+    }
 
     public void adicionarConta(Conta conta) {
         this.contas.add(conta);

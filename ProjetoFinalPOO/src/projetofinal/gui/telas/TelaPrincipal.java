@@ -17,6 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -69,6 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Meio.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
 
         BotGerClient.setText("Gerenciar Clientes ");
+        BotGerClient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotGerClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotGerClientActionPerformed(evt);
@@ -77,6 +79,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Meio.add(BotGerClient);
 
         BotGerCont.setText("Gerenciar Contas");
+        BotGerCont.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotGerCont.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotGerContActionPerformed(evt);
@@ -85,6 +88,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Meio.add(BotGerCont);
 
         BotOpBanc.setText("Operacoes Bancarias");
+        BotOpBanc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotOpBanc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotOpBancActionPerformed(evt);

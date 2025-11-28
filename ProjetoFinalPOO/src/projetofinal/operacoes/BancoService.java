@@ -63,6 +63,13 @@ public class BancoService {
         }
         throw new ContaNaoEncontradaException("Conta nao encontrada");
     }
+    
+    public Cliente buscarCliente(String cpf) {
+    if (clientes.containsKey(cpf)) {
+        return clientes.get(cpf);
+    }
+    throw new RuntimeException("Cliente não encontrado");
+}
 
     public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException {
         buscarConta(numeroConta).depositar(valor);
@@ -75,6 +82,14 @@ public class BancoService {
     public void realizarTransferencia(String contaOrigem, String contaDestino,double valor) throws ContaNaoEncontradaException {
         buscarConta(contaOrigem).tranferir(buscarConta(contaDestino),valor);
     }
+    
+    public void removerCliente(String cpf) throws ClienteNaoEncontradoException {
+    if (!clientes.containsKey(cpf)) {
+        throw new ClienteNaoEncontradoException("Cliente não encontrado");
+    }
+
+    clientes.remove(cpf);
+}
 
     public String getNomeBanco() {
         return nomeBanco;

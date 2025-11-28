@@ -17,6 +17,7 @@ public class TelaOperacoes extends javax.swing.JFrame {
      */
     public TelaOperacoes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

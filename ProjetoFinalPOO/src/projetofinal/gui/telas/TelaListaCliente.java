@@ -17,6 +17,7 @@ public class TelaListaCliente extends javax.swing.JDialog {
     public TelaListaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
