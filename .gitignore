@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.kotlin
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+=======
 # ============================
 # IDEs and Editors
 # ============================
@@ -18,10 +34,25 @@ out/
 .settings/
 .springBeans/
 .sts4-cache/
+>>>>>>> 3ec896303d5ac7f6cfb31ed9681659865ce33d92
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+<<<<<<< HEAD
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+=======
 ## NetBeans
 nbproject/private/
 nbbuild/
@@ -78,3 +109,4 @@ release.properties
 *.local
 *.env.*
 /ProjetoFinalPOO/nbproject/private/
+>>>>>>> 3ec896303d5ac7f6cfb31ed9681659865ce33d92
