@@ -36,7 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotGerCont = new javax.swing.JButton();
         BotOpBanc = new javax.swing.JButton();
         Rodape = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        LabRodape = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("TELA INICIAL ");
@@ -100,10 +100,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Rodape.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Delegas Bank - Aqui seu dinheiro e mais que valorizado");
+        LabRodape.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LabRodape.setForeground(new java.awt.Color(51, 51, 51));
+        LabRodape.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabRodape.setText("Delegas Bank - Aqui seu dinheiro e mais que valorizado");
 
         javax.swing.GroupLayout RodapeLayout = new javax.swing.GroupLayout(Rodape);
         Rodape.setLayout(RodapeLayout);
@@ -111,17 +111,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             RodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RodapeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(LabRodape, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addContainerGap())
         );
         RodapeLayout.setVerticalGroup(
             RodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RodapeLayout.createSequentialGroup()
                 .addGap(0, 84, Short.MAX_VALUE)
-                .addComponent(jLabel2))
+                .addComponent(LabRodape))
         );
 
         getContentPane().add(Rodape, java.awt.BorderLayout.PAGE_END);
+        Rodape.getAccessibleContext().setAccessibleName("Sistema Bancario");
 
         getAccessibleContext().setAccessibleName("TELA INICIAL");
 
@@ -186,10 +187,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotGerClient;
     private javax.swing.JButton BotGerCont;
     private javax.swing.JButton BotOpBanc;
+    private javax.swing.JLabel LabRodape;
     private javax.swing.JPanel Meio;
     private javax.swing.JPanel Rodape;
     private javax.swing.JLabel Titulo;
     private javax.swing.JPanel Topo;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

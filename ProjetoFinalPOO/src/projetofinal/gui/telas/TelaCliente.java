@@ -32,14 +32,14 @@ public class TelaCliente extends javax.swing.JFrame {
         Topo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Meio = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BtnCadastrar = new javax.swing.JButton();
+        BtnBuscar = new javax.swing.JButton();
+        BtnListar = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnRemover = new javax.swing.JButton();
+        BtnVoltar = new javax.swing.JButton();
         Rodape = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        LabelRodape = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -64,85 +64,85 @@ public class TelaCliente extends javax.swing.JFrame {
 
         Meio.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setText("Cadastrar Cliente ");
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BtnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnCadastrar.setText("Cadastrar Cliente ");
+        BtnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BtnCadastrarActionPerformed(evt);
             }
         });
-        Meio.add(jButton6);
+        Meio.add(BtnCadastrar);
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setText("Buscar Cliente ");
-        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        BtnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnBuscar.setText("Buscar Cliente ");
+        BtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                BtnBuscarActionPerformed(evt);
             }
         });
-        Meio.add(jButton8);
+        Meio.add(BtnBuscar);
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setText("Listar Clientes ");
-        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BtnListar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnListar.setText("Listar Clientes ");
+        BtnListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BtnListarActionPerformed(evt);
             }
         });
-        Meio.add(jButton7);
+        Meio.add(BtnListar);
 
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton9.setText("Editar Cliente ");
-        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        BtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnEditar.setText("Editar Cliente ");
+        BtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                BtnEditarActionPerformed(evt);
             }
         });
-        Meio.add(jButton9);
+        Meio.add(BtnEditar);
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton10.setText("Remover Cliente ");
-        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        BtnRemover.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnRemover.setText("Remover Cliente ");
+        BtnRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                BtnRemoverActionPerformed(evt);
             }
         });
-        Meio.add(jButton10);
+        Meio.add(BtnRemover);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Voltar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtnVoltar.setText("Voltar");
+        BtnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnVoltarActionPerformed(evt);
             }
         });
-        Meio.add(jButton1);
+        Meio.add(BtnVoltar);
 
         getContentPane().add(Meio, java.awt.BorderLayout.CENTER);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Sistema Bancário • Clientes");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        LabelRodape.setBackground(new java.awt.Color(255, 255, 255));
+        LabelRodape.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LabelRodape.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelRodape.setText("Sistema Bancário • Clientes");
+        LabelRodape.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout RodapeLayout = new javax.swing.GroupLayout(Rodape);
         Rodape.setLayout(RodapeLayout);
         RodapeLayout.setHorizontalGroup(
             RodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(LabelRodape, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
         );
         RodapeLayout.setVerticalGroup(
             RodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RodapeLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2))
+                .addComponent(LabelRodape))
         );
 
         getContentPane().add(Rodape, java.awt.BorderLayout.PAGE_END);
@@ -150,29 +150,29 @@ public class TelaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
         new TelaCadastrarCliente(this,true).setVisible(true);
         
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_BtnCadastrarActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         
         new TelaBuscarCliente(this,true).setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_BtnBuscarActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         // TODO add your handling code here:
         new TelaEditarCliente(this,true).setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_BtnEditarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
         // TODO add your handling code here:
         new TelaPrincipal().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnVoltarActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BtnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListarActionPerformed
         // TODO add your handling code here:
         TelaListaCliente tela = new TelaListaCliente(this, true);
 
@@ -182,12 +182,12 @@ public class TelaCliente extends javax.swing.JFrame {
 
     tela.setVisible(true);
 
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BtnListarActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void BtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoverActionPerformed
         // TODO add your handling code here:
         new TelaRemoverCliente(this, true).setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_BtnRemoverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,16 +226,16 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnCadastrar;
+    private javax.swing.JButton BtnEditar;
+    private javax.swing.JButton BtnListar;
+    private javax.swing.JButton BtnRemover;
+    private javax.swing.JButton BtnVoltar;
+    private javax.swing.JLabel LabelRodape;
     private javax.swing.JPanel Meio;
     private javax.swing.JPanel Rodape;
     private javax.swing.JPanel Topo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

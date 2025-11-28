@@ -77,3 +77,4 @@ release.properties
 .env
 *.local
 *.env.*
+/ProjetoFinalPOO/nbproject/private/
