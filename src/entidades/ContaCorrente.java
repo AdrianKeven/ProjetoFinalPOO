@@ -1,6 +1,6 @@
-package projetofinal.entidades;
+package entidades;
 
-import projetofinal.utilitarios.SaldoInsuficienteException;
+import utilitarios.SaldoInsuficienteException;
 
 public class ContaCorrente extends Conta {
     private double limiteChequeEspecial;

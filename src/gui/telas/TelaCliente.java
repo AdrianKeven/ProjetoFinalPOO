@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package projetofinal.gui.telas;
+package gui.telas;
 
-import projetofinal.gui.*;
+import gui.*;
 
 /**
  *
@@ -177,7 +173,7 @@ public class TelaCliente extends javax.swing.JFrame {
         TelaListaCliente tela = new TelaListaCliente(this, true);
 
     tela.carregarTabela(
-        projetofinal.gui.GuiController.getBancoService().getClientes()
+        gui.GuiController.getBancoService().getClientes()
     );
 
     tela.setVisible(true);

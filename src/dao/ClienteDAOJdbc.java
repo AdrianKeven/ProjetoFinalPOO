@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package projetofinal.dao;
+package dao;
 
-import projetofinal.entidades.Cliente;
-import projetofinal.util.DBConnection;
+import entidades.Cliente;
+import util.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;

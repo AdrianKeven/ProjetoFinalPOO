@@ -1,6 +1,6 @@
-package projetofinal.entidades;
+package entidades;
 
-import projetofinal.utilitarios.SaldoInsuficienteException;
+import utilitarios.SaldoInsuficienteException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
-package projetofinal.entidades;
+package entidades;
 
-import projetofinal.utilitarios.ValidadorCliente;
+import utilitarios.ValidadorCliente;
 
 import java.util.List;
 import java.util.Objects;

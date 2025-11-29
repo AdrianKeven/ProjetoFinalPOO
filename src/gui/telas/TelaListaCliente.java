@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
-package projetofinal.gui.telas;
+package gui.telas;
 import java.util.Map;
-import projetofinal.entidades.Cliente;
+import entidades.Cliente;
 /**
  *
  * @author samel
@@ -107,12 +103,12 @@ public class TelaListaCliente extends javax.swing.JDialog {
         
     }
     
-        public void carregarTabela(java.util.Map<String, projetofinal.entidades.Cliente>cliente){
+        public void carregarTabela(java.util.Map<String,entidades.Cliente>cliente){
             String[]colunas = {"Nome", "CPF","Endereço","Num Contas"};
             Object[][]dados = new Object [cliente.size()][4];
             
             int i = 0;
-            for(projetofinal.entidades.Cliente c : cliente.values()){
+            for(entidades.Cliente c : cliente.values()){
                 dados[i][0]= c.getNome();
                 dados[i][1]=c.getCpf();
                 dados[i][2]=c.getEndereco();

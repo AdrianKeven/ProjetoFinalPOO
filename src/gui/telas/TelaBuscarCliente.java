@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
-package projetofinal.gui.telas;
-import projetofinal.gui.GuiController;
+package gui.telas;
+import gui.GuiController;
+import entidades.*;
 
 /**
  *

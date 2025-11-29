@@ -1,4 +1,4 @@
-package projetofinal.utilitarios;
+package utilitarios;
 
 public class ClienteNaoEncontradoException extends RuntimeException {
     public ClienteNaoEncontradoException(String message) {

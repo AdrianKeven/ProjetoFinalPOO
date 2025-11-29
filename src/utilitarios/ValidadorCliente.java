@@ -1,4 +1,4 @@
-package projetofinal.utilitarios;
+package utilitarios;
 
 public class ValidadorCliente {
 

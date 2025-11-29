@@ -1,11 +1,8 @@
-package projetofinal.operacoes;
+package operacoes;
 
-import projetofinal.entidades.Cliente;
-import projetofinal.entidades.Conta;
-import projetofinal.entidades.ContaCorrente;
-import projetofinal.entidades.ContaPoupanca;
-import projetofinal.utilitarios.ClienteNaoEncontradoException;
-import projetofinal.utilitarios.ContaNaoEncontradaException;
+import entidades.*;
+import utilitarios.ClienteNaoEncontradoException;
+import utilitarios.ContaNaoEncontradaException;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package projetofinal.entidades;
+package entidades;
 
-import projetofinal.utilitarios.SaldoInsuficienteException;
+import utilitarios.SaldoInsuficienteException;
 
 public class ContaPoupanca extends Conta{
     final double TAXADERENDIMENTOMENSAL = 0.01;

@@ -1,6 +1,6 @@
-package projetofinal.gui;
-import projetofinal.operacoes.BancoService;
-import projetofinal.gui.telas.TelaPrincipal;
+package gui;
+import operacoes.BancoService;
+import gui.telas.TelaPrincipal;
 public class GuiController {
     private static BancoService bancoService;
 
