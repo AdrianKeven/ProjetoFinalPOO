@@ -3,10 +3,11 @@ package entidades;
 import utilitarios.SaldoInsuficienteException;
 
 public class ContaCorrente extends Conta {
+
     private double limiteChequeEspecial;
 
-    public ContaCorrente(String numero, Cliente proprietario, double limiteChequeEspecial) {
-        super(numero, proprietario);
+    public ContaCorrente(Cliente proprietario, String numero, double limiteChequeEspecial) {
+        super(proprietario,numero);
         this.limiteChequeEspecial = limiteChequeEspecial;
     }
 
@@ -16,33 +17,30 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void depositar(double valor) {
-        if(valor > 0) {
+        if (valor > 0) {
             this.saldo += valor;
-            adicionarTransacao(String.format("Deposito: R$ %.2f", valor));
-        }else{
-            throw new IllegalArgumentException("Valor de deposito deve ser maior que 0");
+            adicionarTransacao(String.format("Depósito: R$ %.2f", valor));
+        } else {
+            throw new IllegalArgumentException("Valor de depósito deve ser maior que 0");
         }
     }
 
     @Override
     public void sacar(double valor) throws SaldoInsuficienteException {
-        if(valor <= 0) {
+        if (valor <= 0) {
             throw new IllegalArgumentException("Valor de saque deve ser maior que 0");
         }
 
-        if(valor <= this.saldo){
-            this.saldo -=valor;
-            System.out.printf("Valor sacado: R$ %.2f%n", valor);
-            System.out.println(this);
+        if (valor <= this.saldo) {
+            this.saldo -= valor;
             adicionarTransacao(String.format("Saque: R$ %.2f", valor));
         } else {
             double valorFaltante = valor - saldo;
-            if(valorFaltante <= this.limiteChequeEspecial){
+
+            if (valorFaltante <= this.limiteChequeEspecial) {
                 this.saldo = 0;
                 this.limiteChequeEspecial -= valorFaltante;
-                System.out.printf("Valor sacado: R$ %.2f%n", valor);
-                System.out.println(this);
-                adicionarTransacao(String.format("Saque: R$ %.2f", valor));
+                adicionarTransacao(String.format("Saque usando cheque especial: R$ %.2f", valor));
             } else {
                 throw new SaldoInsuficienteException("Saldo insuficiente e limite do cheque menor que o valor sacado");
             }
@@ -64,7 +62,6 @@ public class ContaCorrente extends Conta {
     @Override
     public String toString() {
         return super.toString() +
-                String.format(" | Limite Cheque Especial: R$ %.2f", this.limiteChequeEspecial);
+                String.format(" | Cheque Especial: R$ %.2f", this.limiteChequeEspecial);
     }
-
 }

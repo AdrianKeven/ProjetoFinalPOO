@@ -2,33 +2,32 @@ package entidades;
 
 import utilitarios.SaldoInsuficienteException;
 
-public class ContaPoupanca extends Conta{
-    final double TAXADERENDIMENTOMENSAL = 0.01;
+public class ContaPoupanca extends Conta {
 
-    public ContaPoupanca(String numero, Cliente proprietario) {
-        super(numero, proprietario);
+    private final double TAXA_RENDIMENTO_MENSAL = 0.01;
+
+    public ContaPoupanca(Cliente proprietario, String numero) {
+        super(proprietario,numero);
     }
 
     @Override
     public void depositar(double valor) {
-        if(valor > 0) {
+        if (valor > 0) {
             this.saldo += valor;
-            adicionarTransacao(String.format("Deposito: R$ %.2f", valor));
-        }else{
-            throw new IllegalArgumentException("Valor de deposito deve ser maior que 0");
+            adicionarTransacao(String.format("Depósito: R$ %.2f", valor));
+        } else {
+            throw new IllegalArgumentException("Valor de depósito deve ser maior que 0");
         }
     }
 
     @Override
     public void sacar(double valor) throws SaldoInsuficienteException {
-        if(valor <= 0) {
+        if (valor <= 0) {
             throw new IllegalArgumentException("Valor de saque deve ser maior que 0");
         }
 
-        if(valor <= this.saldo){
-            this.saldo -=valor;
-            System.out.printf("Valor sacado: R$ %.2f%n", valor);
-            System.out.println(this);
+        if (valor <= this.saldo) {
+            this.saldo -= valor;
             adicionarTransacao(String.format("Saque: R$ %.2f", valor));
         } else {
             throw new SaldoInsuficienteException("Saldo insuficiente para efetuar saque");
@@ -47,14 +46,13 @@ public class ContaPoupanca extends Conta{
         ));
     }
 
-    public void renderJuros(){
-        this.saldo *= (1+this.TAXADERENDIMENTOMENSAL);
+    public void renderJuros() {
+        this.saldo *= (1 + this.TAXA_RENDIMENTO_MENSAL);
     }
 
     @Override
     public String toString() {
         return super.toString() +
-                String.format(" | Taxa de Rendimento(mensal): R$ %.2f", this.TAXADERENDIMENTOMENSAL);
-
+                String.format(" | Taxa Rendimento Mensal: %.2f%%", this.TAXA_RENDIMENTO_MENSAL * 100);
     }
 }

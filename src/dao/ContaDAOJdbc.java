@@ -1,10 +1,7 @@
-
 package dao;
 
 import entidades.*;
 import util.DBConnection;
-
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,8 @@ public class ContaDAOJdbc implements ContaDAO {
 
     @Override
     public void salvar(Conta conta) throws SQLException {
-        String sql = "INSERT INTO contas (numero, tipo, saldo, limite_cheque_especial, proprietario_cpf) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO contas (numero, tipo, saldo, limite_cheque_especial, proprietario_cpf) " +
+                "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -33,13 +31,14 @@ public class ContaDAOJdbc implements ContaDAO {
             }
 
             ps.setString(5, conta.getProprietario().getCpf());
+
             ps.executeUpdate();
         }
     }
 
     @Override
     public void atualizar(Conta conta) throws SQLException {
-        String sql = "UPDATE contas SET tipo = ?, saldo = ?, limite_cheque_especial = ?, proprietario_cpf = ? WHERE numero = ?";
+        String sql = "UPDATE contas SET tipo=?, saldo=?, limite_cheque_especial=?, proprietario_cpf=? WHERE numero=?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -48,7 +47,7 @@ public class ContaDAOJdbc implements ContaDAO {
                 ps.setString(1, "corrente");
                 ps.setDouble(2, cc.getSaldo());
                 ps.setDouble(3, cc.getLimiteChequeEspecial());
-            } else if (conta instanceof ContaPoupanca) {
+            } else {
                 ps.setString(1, "poupanca");
                 ps.setDouble(2, conta.getSaldo());
                 ps.setNull(3, Types.DOUBLE);
@@ -60,53 +59,44 @@ public class ContaDAOJdbc implements ContaDAO {
             ps.executeUpdate();
         }
     }
+
+    @Override
+    public void deletar(String numeroConta) throws SQLException {
+
+        Conta conta = buscarPorNumero(numeroConta);
+        if (conta == null) return;
+
+        String cpf = conta.getProprietario().getCpf();
+
+        // Deletar conta
+        String sql = "DELETE FROM contas WHERE numero = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, numeroConta);
+            ps.executeUpdate();
+        }
+
+        // Se cliente não tiver mais contas → deletar cliente
+        if (contarContasPorCliente(cpf) == 0) {
+            clienteDAO.deletar(cpf);
+            System.out.println("Cliente removido automaticamente (não possui mais contas).");
+        }
+    }
+
     public int contarContasPorCliente(String cpf) throws SQLException {
-    String sql = "SELECT COUNT(*) FROM contas WHERE proprietario_cpf = ?";
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+        String sql = "SELECT COUNT(*) FROM contas WHERE proprietario_cpf = ?";
 
-        ps.setString(1, cpf);
-        ResultSet rs = ps.executeQuery();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        if (rs.next()) return rs.getInt(1);
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) return rs.getInt(1);
+        }
+        return 0;
     }
-    return 0;
-}
-
-@Override
-public void deletar(String numeroConta) throws SQLException {
-
-    Conta conta = buscarPorNumero(numeroConta);
-    if (conta == null) return;
-
-    String cpf = conta.getProprietario().getCpf();
-  
-    String sql = "DELETE FROM contas WHERE numero = ?";
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
-
-        ps.setString(1, numeroConta);
-        ps.executeUpdate();
-    }
-
-    if (contarContasPorCliente(cpf) == 0) {
-        ClienteDAO clienteDAO = new ClienteDAOJdbc();
-        clienteDAO.deletar(cpf);
-        System.out.println("Cliente removido automaticamente (nao possui mais contas).");
-    }
-}
-
-public boolean deletarRetornaSucesso(String numeroConta) throws SQLException {
-    String sql = "DELETE FROM contas WHERE numero = ?";
-
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
-
-        ps.setString(1, numeroConta);
-        int rows = ps.executeUpdate();
-        return rows > 0;
-    }
-}
 
     @Override
     public Conta buscarPorNumero(String numero) throws SQLException {
@@ -122,30 +112,28 @@ public boolean deletarRetornaSucesso(String numeroConta) throws SQLException {
 
                     String tipo = rs.getString("tipo");
                     double saldoBD = rs.getDouble("saldo");
+                    double limiteBD = rs.getDouble("limite_cheque_especial");
                     String cpfProp = rs.getString("proprietario_cpf");
 
                     Cliente proprietario = clienteDAO.buscarPorCpf(cpfProp);
 
                     Conta conta;
 
-                    if (tipo.equals("corrente")) {
+                    if ("corrente".equals(tipo)) {
                         conta = new ContaCorrente(
-                                rs.getString("numero"),
                                 proprietario,
-                                rs.getDouble("limite_cheque_especial")
+                                rs.getString("numero"),
+                                limiteBD
                         );
                     } else {
                         conta = new ContaPoupanca(
-                                rs.getString("numero"),
-                                proprietario
+                                proprietario,
+                                rs.getString("numero")
                         );
                     }
 
-                    try {
-                        Field f = Conta.class.getDeclaredField("saldo");
-                        f.setAccessible(true);
-                        f.setDouble(conta, saldoBD);
-                    } catch (Exception ignored) {}
+                    // repor saldo salvo no banco
+                    conta.setSaldoBD(saldoBD);
 
                     return conta;
                 }
@@ -191,7 +179,7 @@ public boolean deletarRetornaSucesso(String numeroConta) throws SQLException {
                 lista.add(c);
             }
         }
+
         return lista;
     }
 }
-
