@@ -38,19 +38,37 @@ public class BancoService {
         }
 
         tipoConta = tipoConta.trim().toLowerCase();
-
+                
+        Conta novaConta;
+        
+        
         if (tipoConta.equals("corrente")) {
-            ContaCorrente retorno = new ContaCorrente(String.valueOf(this.proximoNumeroConta),cliente,limiteChequeEspecial);
-            this.proximoNumeroConta++;
-            return retorno;
+            novaConta = new ContaCorrente(String.valueOf(this.proximoNumeroConta),cliente,limiteChequeEspecial);
+            
         } else if (tipoConta.equals("poupanca")){
-            ContaPoupanca retorno = new ContaPoupanca(String.valueOf(this.proximoNumeroConta),cliente);
-            this.proximoNumeroConta++;
-            return retorno;
+            novaConta = new ContaPoupanca(String.valueOf(this.proximoNumeroConta),cliente);
+            
         } else {
             throw new IllegalArgumentException("Tipo da conta nao encontrado (corrente ou poupanca)");
         }
+        
+        contas.put(novaConta.getNumero(), novaConta);
+    
+        cliente.adicionarConta(novaConta);
+
+        proximoNumeroConta++;
+
+        return novaConta;
     }
+    
+    public void removerConta(String numeroConta) throws ContaNaoEncontradaException {
+
+    if (!contas.containsKey(numeroConta)) {
+        throw new ContaNaoEncontradaException("Conta não encontrada");
+    }
+
+    contas.remove(numeroConta);
+}
 
     public Conta buscarConta(String numeroConta) throws ContaNaoEncontradaException {
         for (Conta conta : contas.values()) {

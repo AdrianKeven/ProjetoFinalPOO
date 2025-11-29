@@ -30,14 +30,13 @@ public class TelaContas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BotCriar = new javax.swing.JButton();
+        BotConsulSaldo = new javax.swing.JButton();
+        BotAlterar = new javax.swing.JButton();
+        BotDesativa = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,17 +77,22 @@ public class TelaContas extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.GridLayout(5, 1, 10, 10));
 
-        jButton1.setText("Criar Conta ");
-        jPanel3.add(jButton1);
+        BotCriar.setText("Criar Conta ");
+        BotCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotCriarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BotCriar);
 
-        jButton2.setText("Consultar Saldo ");
-        jPanel3.add(jButton2);
+        BotConsulSaldo.setText("Consultar Saldo ");
+        jPanel3.add(BotConsulSaldo);
 
-        jButton3.setText("Alterar Titular ");
-        jPanel3.add(jButton3);
+        BotAlterar.setText("Alterar Titular ");
+        jPanel3.add(BotAlterar);
 
-        jButton4.setText("Desativar Conta ");
-        jPanel3.add(jButton4);
+        BotDesativa.setText("Desativar Conta ");
+        jPanel3.add(BotDesativa);
 
         jButton5.setText("Voltar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +112,11 @@ public class TelaContas extends javax.swing.JFrame {
         new TelaPrincipal().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void BotCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotCriarActionPerformed
+        // TODO add your handling code here:
+        new TelaCriarConta(this,true).setVisible(true);
+    }//GEN-LAST:event_BotCriarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,10 +155,10 @@ public class TelaContas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton BotAlterar;
+    private javax.swing.JButton BotConsulSaldo;
+    private javax.swing.JButton BotCriar;
+    private javax.swing.JButton BotDesativa;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

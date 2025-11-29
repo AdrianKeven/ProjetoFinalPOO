@@ -34,7 +34,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Rodape = new javax.swing.JPanel();
         LabRodape = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TELA INICIAL ");
         setPreferredSize(new java.awt.Dimension(800, 500));
 
