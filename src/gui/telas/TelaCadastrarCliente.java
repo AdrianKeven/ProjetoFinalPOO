@@ -190,10 +190,8 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos");
                 return;
             }
-            
-            Cliente cliente = new Cliente(nome,cpf,endereco, new ArrayList<>());
-            
-            GuiController.getBancoService().cadastrarCliente(cliente);
+
+            GuiController.getBancoService().cadastrarCliente(nome,cpf,endereco);
             JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso");
             dispose();
             

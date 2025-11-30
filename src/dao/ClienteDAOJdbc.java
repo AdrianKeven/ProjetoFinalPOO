@@ -60,8 +60,7 @@ public class ClienteDAOJdbc implements ClienteDAO {
                     return new Cliente(
                             rs.getString("nome"),
                             rs.getString("cpf"),
-                            rs.getString("endereco"),
-                            new ArrayList<>()
+                            rs.getString("endereco")
                     );
                 }
             }
@@ -82,8 +81,7 @@ public class ClienteDAOJdbc implements ClienteDAO {
                 lista.add(new Cliente(
                         rs.getString("nome"),
                         rs.getString("cpf"),
-                        rs.getString("endereco"),
-                        new ArrayList<>()
+                        rs.getString("endereco")
                 ));
             }
         }

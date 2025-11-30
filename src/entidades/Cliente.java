@@ -2,6 +2,7 @@ package entidades;
 
 import utilitarios.ValidadorCliente;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,15 +10,16 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String endereco;
-    private List<Conta> contas;
+    private final List<Conta> contas;
 
-    public Cliente(String nome, String cpf, String endereco, List<Conta> contas) {
+    public Cliente(String nome, String cpf, String endereco) {
 
             ValidadorCliente.isClienteValido(nome,cpf,endereco);
                 this.nome = nome.trim();
                 this.cpf = cpf;
                 this.endereco = endereco.trim();
-                this.contas = contas;
+                this.contas = new ArrayList<>();;
+
     }
 
     public String getNome() {

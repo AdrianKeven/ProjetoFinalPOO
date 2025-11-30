@@ -27,13 +27,30 @@ public class BancoService {
     }
 
     //CRUD DE CLIENTE
-    public void cadastrarCliente(Cliente cliente) throws SQLException {
-        if (clientes.containsKey(cliente.getCpf())) {
-            throw new IllegalArgumentException("CPF ja presente no Banco de clientes");
-        } else {
-            clienteDAO.salvar(cliente);
-            clientes.put(cliente.getCpf(),cliente);
+    public void cadastrarCliente(String nome, String cpf, String endereco) throws SQLException {
+
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome inválido");
         }
+        if (cpf == null || cpf.isBlank()) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+        if (endereco == null || endereco.isBlank()) {
+            throw new IllegalArgumentException("Endereço inválido");
+        }
+
+        if (clientes.containsKey(cpf)) {
+            throw new IllegalArgumentException("CPF já cadastrado no banco de clientes");
+        }
+
+        // Cria o cliente corretamente
+        Cliente cliente = new Cliente(nome, cpf, endereco);
+
+        // Grava no banco primeiro
+        clienteDAO.salvar(cliente);
+
+        // Só coloca no mapa se o banco salvar com sucesso
+        clientes.put(cpf, cliente);
     }
 
     public void atualizarCliente(Cliente cliente) throws SQLException {
