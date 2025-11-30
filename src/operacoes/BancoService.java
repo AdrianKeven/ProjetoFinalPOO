@@ -7,15 +7,15 @@ import dao.*;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BancoService {
-    private String nomeBanco;
-    private Map<String, Cliente> clientes;
-    private Map<String, Conta> contas;
-    private int proximoNumeroConta = 1;
-    private ContaDAOJdbc contaDAO;
-    private ClienteDAOJdbc clienteDAO;
+    private final String nomeBanco;
+    private final Map<String, Cliente> clientes;
+    private final Map<String, Conta> contas;
+    private final ContaDAOJdbc contaDAO;
+    private final ClienteDAOJdbc clienteDAO;
 
 
     public BancoService(String nomeBanco) {
@@ -26,14 +26,30 @@ public class BancoService {
         this.contaDAO = new ContaDAOJdbc();
     }
 
+    //CRUD DE CLIENTE
     public void cadastrarCliente(Cliente cliente) throws SQLException {
         if (clientes.containsKey(cliente.getCpf())) {
             throw new IllegalArgumentException("CPF ja presente no Banco de clientes");
         } else {
             clienteDAO.salvar(cliente);
+            clientes.put(cliente.getCpf(),cliente);
         }
     }
 
+    public void atualizarCliente(Cliente cliente) throws SQLException {
+        clienteDAO.atualizar(cliente);
+    }
+
+    public void removerCliente(String cpf) throws ClienteNaoEncontradoException, SQLException {
+        if (!clientes.containsKey(cpf)) {
+            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
+        }
+
+        clientes.remove(cpf);
+        clienteDAO.deletar(cpf);
+    }
+
+    //CRUD DE CONTAS
     public ContaCorrente abrirContaCorrente(Cliente cliente,String numero, double limiteChequeEspecial) throws ClienteNaoEncontradoException, SQLException {
 
         if (cliente == null) {
@@ -46,6 +62,8 @@ public class BancoService {
                 
         ContaCorrente novaConta = new ContaCorrente(cliente,numero,limiteChequeEspecial);
         contaDAO.salvar(novaConta);
+        contas.put(novaConta.getNumero(),novaConta);
+        cliente.adicionarConta(novaConta);
         return novaConta;
     }
 
@@ -62,19 +80,31 @@ public class BancoService {
         ContaPoupanca novaConta = new ContaPoupanca(cliente,numero);
         contaDAO.salvar(novaConta);
         contas.put(numero,novaConta);
+        cliente.adicionarConta(novaConta);
         return novaConta;
     }
 
+    public void atualizarContas(Conta conta) throws SQLException {
+        contaDAO.atualizar(conta);
+    }
 
     public void removerConta(String numeroConta) throws ContaNaoEncontradaException, SQLException {
 
-    if (!contas.containsKey(numeroConta)) {
-        throw new ContaNaoEncontradaException("Conta não encontrada");
-    }
-    contas.remove(numeroConta);
-    contaDAO.deletar(numeroConta);
-}
+        if (!contas.containsKey(numeroConta)) {
+            throw new ContaNaoEncontradaException("Conta não encontrada");
+        }
 
+        Conta conta = contas.get(numeroConta);
+
+        Cliente proprietario = conta.getProprietario();
+        if (proprietario != null) {
+            proprietario.getContas().remove(conta);
+        }
+        contas.remove(numeroConta);
+        contaDAO.deletar(numeroConta);
+    }
+
+    //METODOS DE BUSCA
     public Conta buscarConta(String numeroConta) throws ContaNaoEncontradaException {
         return contas.get(numeroConta);
     }
@@ -83,29 +113,28 @@ public class BancoService {
     if (clientes.containsKey(cpf)) {
         return clientes.get(cpf);
     }
+
     throw new RuntimeException("Cliente não encontrado");
-}
-
-    public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException {
-        buscarConta(numeroConta).depositar(valor);
     }
 
-    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException {
-        buscarConta(numeroConta).sacar(valor);
+    //METODOS DE LISTAGEM
+    public List<Conta> listarTodasContaClinte(String cpf) throws ClienteNaoEncontradoException,SQLException {
+        if (!clientes.containsKey(cpf)) {
+            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
+        }
+
+        return contaDAO.listarPorCliente(cpf);
     }
 
-    public void realizarTransferencia(String contaOrigem, String contaDestino,double valor) throws ContaNaoEncontradaException {
-        buscarConta(contaOrigem).tranferir(buscarConta(contaDestino),valor);
-    }
-    
-    public void removerCliente(String cpf) throws ClienteNaoEncontradoException {
-    if (!clientes.containsKey(cpf)) {
-        throw new ClienteNaoEncontradoException("Cliente não encontrado");
+    public List<Conta> listarTodasContas() throws SQLException {
+        return contaDAO.listarTodas();
     }
 
-    clientes.remove(cpf);
-}
+    public List<Cliente> listarTodosClientes() throws SQLException {
+        return clienteDAO.listarTodos();
+    }
 
+    //GETERS
     public String getNomeBanco() {
         return nomeBanco;
     }
@@ -116,5 +145,18 @@ public class BancoService {
 
     public Map<String, Conta> getContas() {
         return new HashMap<>(this.contas);
+    }
+
+    //METODOS DA LOGICA DE NEGOCIO
+    public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException {
+        buscarConta(numeroConta).depositar(valor);
+    }
+
+    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException {
+        buscarConta(numeroConta).sacar(valor);
+    }
+
+    public void realizarTransferencia(String contaOrigem, String contaDestino,double valor) throws ContaNaoEncontradaException {
+        buscarConta(contaOrigem).tranferir(buscarConta(contaDestino),valor);
     }
 }
