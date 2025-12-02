@@ -1,6 +1,9 @@
 package gui.telas;
 
 import gui.*;
+import util.DBConnection;
+
+import java.sql.Connection;
 
 /**
  *
@@ -12,8 +15,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
-        initComponents();
-        setLocationRelativeTo(null);
+        try {
+            // Criar/verificar tabelas
+            DBConnection.inicializar();
+
+            System.out.println("Conexão estabelecida e tabelas prontas!");
+
+            initComponents();
+            setLocationRelativeTo(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

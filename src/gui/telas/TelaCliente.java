@@ -172,9 +172,7 @@ public class TelaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         TelaListaCliente tela = new TelaListaCliente(this, true);
 
-    tela.carregarTabela(
-        gui.GuiController.getBancoService().getClientes()
-    );
+    tela.carregarTabela();
 
     tela.setVisible(true);
 

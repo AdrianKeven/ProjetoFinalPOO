@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 public class BancoService {
+
     private final String nomeBanco;
     private final Map<String, Cliente> clientes;
     private final Map<String, Conta> contas;
+
     private final ContaDAOJdbc contaDAO;
     private final ClienteDAOJdbc clienteDAO;
-
 
     public BancoService(String nomeBanco) {
         this.nomeBanco = nomeBanco;
@@ -26,119 +27,125 @@ public class BancoService {
         this.contaDAO = new ContaDAOJdbc();
     }
 
-    //CRUD DE CLIENTE
+    // ---------------------------
+    // CRUD CLIENTE
+    // ---------------------------
     public void cadastrarCliente(String nome, String cpf, String endereco) throws SQLException {
 
-        if (nome == null || nome.isBlank()) {
+        if (nome == null || nome.isBlank())
             throw new IllegalArgumentException("Nome inválido");
-        }
-        if (cpf == null || cpf.isBlank()) {
+
+        if (cpf == null || cpf.isBlank())
             throw new IllegalArgumentException("CPF inválido");
-        }
-        if (endereco == null || endereco.isBlank()) {
+
+        if (endereco == null || endereco.isBlank())
             throw new IllegalArgumentException("Endereço inválido");
-        }
 
-        if (clientes.containsKey(cpf)) {
-            throw new IllegalArgumentException("CPF já cadastrado no banco de clientes");
-        }
+        if (clientes.containsKey(cpf))
+            throw new IllegalArgumentException("CPF já cadastrado no sistema");
 
-        // Cria o cliente corretamente
         Cliente cliente = new Cliente(nome, cpf, endereco);
 
-        // Grava no banco primeiro
-        clienteDAO.salvar(cliente);
-
-        // Só coloca no mapa se o banco salvar com sucesso
-        clientes.put(cpf, cliente);
+        clienteDAO.salvar(cliente);   // grava no banco
+        clientes.put(cpf, cliente);   // grava no mapa
     }
 
     public void atualizarCliente(Cliente cliente) throws SQLException {
         clienteDAO.atualizar(cliente);
+        clientes.put(cliente.getCpf(), cliente);
     }
 
     public void removerCliente(String cpf) throws ClienteNaoEncontradoException, SQLException {
-        if (!clientes.containsKey(cpf)) {
-            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
-        }
+        if (!clientes.containsKey(cpf))
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
 
-        clientes.remove(cpf);
         clienteDAO.deletar(cpf);
+        clientes.remove(cpf);
     }
 
-    //CRUD DE CONTAS
-    public ContaCorrente abrirContaCorrente(Cliente cliente,String numero, double limiteChequeEspecial) throws ClienteNaoEncontradoException, SQLException {
+    // ---------------------------
+    // CRUD CONTAS
+    // ---------------------------
+    public ContaCorrente abrirContaCorrente(Cliente cliente, String numero, double limiteChequeEspecial)
+            throws ClienteNaoEncontradoException, SQLException {
 
-        if (cliente == null) {
-            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
-        }
+        if (cliente == null || !clientes.containsKey(cliente.getCpf()))
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
 
-        if (!clientes.containsKey(cliente.getCpf())) {
-            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
-        }
-                
-        ContaCorrente novaConta = new ContaCorrente(cliente,numero,limiteChequeEspecial);
-        contaDAO.salvar(novaConta);
-        contas.put(novaConta.getNumero(),novaConta);
-        cliente.adicionarConta(novaConta);
-        return novaConta;
+        ContaCorrente conta = new ContaCorrente(cliente, numero, limiteChequeEspecial);
+
+        contaDAO.salvar(conta);
+        contas.put(numero, conta);
+        cliente.adicionarConta(conta);
+
+        return conta;
     }
 
-    public ContaPoupanca abrirContaPoupanca(Cliente cliente, String numero) throws ClienteNaoEncontradoException, SQLException {
+    public ContaPoupanca abrirContaPoupanca(Cliente cliente, String numero)
+            throws ClienteNaoEncontradoException, SQLException {
 
-        if (cliente == null) {
-            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
-        }
+        if (cliente == null || !clientes.containsKey(cliente.getCpf()))
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
 
-        if (!clientes.containsKey(cliente.getCpf())) {
-            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
-        }
+        ContaPoupanca conta = new ContaPoupanca(cliente, numero);
 
-        ContaPoupanca novaConta = new ContaPoupanca(cliente,numero);
-        contaDAO.salvar(novaConta);
-        contas.put(numero,novaConta);
-        cliente.adicionarConta(novaConta);
-        return novaConta;
+        contaDAO.salvar(conta);
+        contas.put(numero, conta);
+        cliente.adicionarConta(conta);
+
+        return conta;
     }
 
     public void atualizarContas(Conta conta) throws SQLException {
         contaDAO.atualizar(conta);
+        contas.put(conta.getNumero(), conta);
     }
 
     public void removerConta(String numeroConta) throws ContaNaoEncontradaException, SQLException {
 
-        if (!contas.containsKey(numeroConta)) {
+        if (!contas.containsKey(numeroConta))
             throw new ContaNaoEncontradaException("Conta não encontrada");
-        }
 
         Conta conta = contas.get(numeroConta);
 
-        Cliente proprietario = conta.getProprietario();
-        if (proprietario != null) {
-            proprietario.getContas().remove(conta);
-        }
-        contas.remove(numeroConta);
+        Cliente cli = conta.getProprietario();
+        if (cli != null)
+            cli.getContas().remove(conta);
+
         contaDAO.deletar(numeroConta);
+        contas.remove(numeroConta);
     }
 
-    //METODOS DE BUSCA
+    // ---------------------------
+    // BUSCAS
+    // ---------------------------
     public Conta buscarConta(String numeroConta) throws ContaNaoEncontradaException {
-        return contas.get(numeroConta);
-    }
-    
-    public Cliente buscarCliente(String cpf) {
-    if (clientes.containsKey(cpf)) {
-        return clientes.get(cpf);
+        atualizarMapContas();
+        Conta conta = contas.get(numeroConta);
+
+        if (conta == null)
+            throw new ContaNaoEncontradaException("Conta não encontrada");
+
+        return conta;
     }
 
-    throw new RuntimeException("Cliente não encontrado");
+    public Cliente buscarCliente(String cpf) throws ClienteNaoEncontradoException {
+        atualizarMapCliente();
+        Cliente c = clientes.get(cpf);
+
+        if (c == null)
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
+
+        return c;
     }
 
-    //METODOS DE LISTAGEM
-    public List<Conta> listarTodasContaClinte(String cpf) throws ClienteNaoEncontradoException,SQLException {
-        if (!clientes.containsKey(cpf)) {
-            throw new ClienteNaoEncontradoException("Cliente nao encontrado");
-        }
+    // ---------------------------
+    // LISTAGENS
+    // ---------------------------
+    public List<Conta> listarTodasContaClinte(String cpf) throws ClienteNaoEncontradoException, SQLException {
+
+        if (!clientes.containsKey(cpf))
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
 
         return contaDAO.listarPorCliente(cpf);
     }
@@ -151,20 +158,24 @@ public class BancoService {
         return clienteDAO.listarTodos();
     }
 
-    //GETERS
+    // ---------------------------
+    // GETTERS
+    // ---------------------------
     public String getNomeBanco() {
         return nomeBanco;
     }
 
     public Map<String, Cliente> getClientes() {
-        return new HashMap<>(this.clientes);
+        return new HashMap<>(clientes);
     }
 
     public Map<String, Conta> getContas() {
-        return new HashMap<>(this.contas);
+        return new HashMap<>(contas);
     }
 
-    //METODOS DA LOGICA DE NEGOCIO
+    // ---------------------------
+    // OPERAÇÕES
+    // ---------------------------
     public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException {
         buscarConta(numeroConta).depositar(valor);
     }
@@ -173,7 +184,19 @@ public class BancoService {
         buscarConta(numeroConta).sacar(valor);
     }
 
-    public void realizarTransferencia(String contaOrigem, String contaDestino,double valor) throws ContaNaoEncontradaException {
-        buscarConta(contaOrigem).tranferir(buscarConta(contaDestino),valor);
+    public void realizarTransferencia(String origem, String destino, double valor)
+            throws ContaNaoEncontradaException {
+
+        Conta cOrigem = buscarConta(origem);
+        Conta cDestino = buscarConta(destino);
+
+        cOrigem.transferir(cDestino, valor);
+    }
+
+    public void atualizarMapCliente() {
+        clienteDAO.atualizarClientesMap(this.clientes);
+    }
+    public void atualizarMapContas() {
+        contaDAO.atualizarMaps(this.clientes,this.contas);
     }
 }

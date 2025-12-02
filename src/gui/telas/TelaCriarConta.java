@@ -229,7 +229,7 @@ public class TelaCriarConta extends javax.swing.JDialog {
             limite = Double.parseDouble(txt);
         }
 
-        var novaConta = banco.abrirConta(cliente, tipoConta, limite);
+        var novaConta = banco.abrirContaCorrente(cliente, tipoConta, limite);
         JOptionPane.showMessageDialog(this, "Conta criada com sucesso!\nNúmero: " + novaConta.getNumero());
         this.dispose();
 

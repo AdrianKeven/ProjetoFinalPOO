@@ -6,24 +6,30 @@ import java.util.List;
 
 public abstract class Conta {
 
-    private String numero;
+    private final String numero;
     protected double saldo;
-    private Cliente proprietario;
-    private List<String> historicoTransacoes;
+    private final Cliente proprietario;
+    private final List<String> historicoTransacoes;
 
-    public Conta(Cliente proprietario,String numero) {
+    public Conta(Cliente proprietario, String numero) {
+
         if (proprietario == null) {
-            throw new IllegalArgumentException("Proprietario não pode ser nulo.");
+            throw new IllegalArgumentException("Proprietário não pode ser nulo.");
+        }
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException("Número da conta inválido.");
         }
 
         this.proprietario = proprietario;
+        this.numero = numero.trim();
         this.saldo = 0;
         this.historicoTransacoes = new ArrayList<>();
-        this.numero = numero;
 
+        // ADICIONA AUTOMATICAMENTE A CONTA AO CLIENTE
+        proprietario.adicionarConta(this);
     }
 
-    public String  getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -51,7 +57,7 @@ public abstract class Conta {
 
     public abstract void sacar(double valor) throws SaldoInsuficienteException;
 
-    public abstract void tranferir(Conta destino, double valor) throws SaldoInsuficienteException;
+    public abstract void transferir(Conta destino, double valor) throws SaldoInsuficienteException;
 
     @Override
     public String toString() {

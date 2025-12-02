@@ -1,6 +1,6 @@
 package gui.telas;
-import java.util.Map;
-import entidades.Cliente;
+import gui.GuiController;
+
 /**
  *
  * @author samel
@@ -103,7 +103,10 @@ public class TelaListaCliente extends javax.swing.JDialog {
         
     }
     
-        public void carregarTabela(java.util.Map<String,entidades.Cliente>cliente){
+        public void carregarTabela(){
+            GuiController.getBancoService().atualizarMapCliente();
+            GuiController.getBancoService().atualizarMapContas();
+            var cliente = GuiController.getBancoService().getClientes();
             String[]colunas = {"Nome", "CPF","Endereço","Num Contas"};
             Object[][]dados = new Object [cliente.size()][4];
             
