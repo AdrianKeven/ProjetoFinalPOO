@@ -109,4 +109,6 @@ release.properties
 *.local
 *.env.*
 /ProjetoFinalPOO/nbproject/private/
+nbproject
+.idea
 >>>>>>> 3ec896303d5ac7f6cfb31ed9681659865ce33d92
