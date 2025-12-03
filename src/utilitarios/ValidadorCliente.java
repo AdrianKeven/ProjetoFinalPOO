@@ -1,5 +1,7 @@
 package utilitarios;
 
+import java.util.Random;
+
 public class ValidadorCliente {
 
         public static void isClienteValido(String nome, String cpf, String endereco) {
@@ -52,6 +54,12 @@ public class ValidadorCliente {
         if (segundoDigito >= 10) segundoDigito = 0;
 
         return (cpf.charAt(9) - '0') == primeiroDigito && (cpf.charAt(10) - '0') == segundoDigito;
+    }
+
+    public static String gerarNumeroConta() {
+        Random random = new Random();
+        int numero = random.nextInt(100000); // 0 até 99999
+        return String.format("%05d", numero); // garante 5 dígitos
     }
 
 }

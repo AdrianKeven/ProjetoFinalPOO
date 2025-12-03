@@ -93,9 +93,9 @@ public class ContaDAOJdbc implements ContaDAO {
                     Conta conta;
 
                     if ("corrente".equalsIgnoreCase(tipo)) {
-                        conta = new ContaCorrente(proprietario, limite, tipo);
+                        conta = new ContaCorrente(numero, proprietario, limite);
                     } else {
-                        conta = new ContaPoupanca(proprietario, tipo);
+                        conta = new ContaPoupanca(numero, proprietario);
                     }
 
                     conta.setSaldoBD(saldoBD);
@@ -158,7 +158,7 @@ public class ContaDAOJdbc implements ContaDAO {
 
         contas.clear();
 
-        String sql = "SELECT numero, tipo, saldo, proprietario_cpf FROM Conta";
+        String sql = "SELECT numero, tipo, saldo, proprietario_cpf, limite_cheque_especial FROM Conta";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -170,21 +170,28 @@ public class ContaDAOJdbc implements ContaDAO {
                 double saldo = rs.getDouble("saldo");
                 String tipo = rs.getString("tipo");
                 String cpf = rs.getString("proprietario_cpf");
-                double limite = rs.getDouble("limite_cheque_especial");
+
+                // Se não for conta corrente, limite vira 0
+                double limite = 0.0;
+                try { limite = rs.getDouble("limite_cheque_especial"); } catch (Exception ignored) {}
+
+                System.out.println("CPF vindo do banco: '" + cpf + "'");
+                System.out.println("Map contém esse CPF? " + clientes.containsKey(cpf));
+                System.out.println("Chaves do map: " + clientes.keySet());
 
                 Cliente cliente = clientes.get(cpf);
 
                 if (cliente == null) {
-                    System.out.println("Aviso: Nenhum cliente encontrado para CPF: " + cpf);
+                    System.out.println("Cliente NÃO encontrado no Map para o CPF: " + cpf);
                     continue;
                 }
 
                 Conta conta;
 
                 if ("corrente".equalsIgnoreCase(tipo)) {
-                    conta = new ContaCorrente(cliente,limite, tipo);
+                    conta = new ContaCorrente(numero, cliente, limite);
                 } else {
-                    conta = new ContaPoupanca(cliente, tipo);
+                    conta = new ContaPoupanca(numero, cliente);
                 }
 
                 conta.setSaldoBD(saldo);

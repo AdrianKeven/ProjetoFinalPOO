@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static utilitarios.ValidadorCliente.gerarNumeroConta;
+
 public class BancoService {
 
     private final String nomeBanco;
@@ -83,23 +85,10 @@ public class BancoService {
 
         if (cliente == null || !clientes.containsKey(cliente.getCpf()))
             throw new ClienteNaoEncontradoException("Cliente não encontrado");
-        String tipo = "corrente";
-        ContaCorrente conta = new ContaCorrente(cliente, limiteChequeEspecial, tipo);
 
-        contaDAO.salvar(conta);
-        contas.put(conta.getNumero(), conta);
-        cliente.adicionarConta(conta);
+        String numero = gerarNumeroConta();
 
-        return conta;
-    }
-
-    public ContaPoupanca abrirContaPoupanca(Cliente cliente, String numero)
-            throws ClienteNaoEncontradoException, SQLException {
-
-        if (cliente == null || !clientes.containsKey(cliente.getCpf()))
-            throw new ClienteNaoEncontradoException("Cliente não encontrado");
-        String tipo = "poupanca";
-        ContaPoupanca conta = new ContaPoupanca(cliente, tipo);
+        ContaCorrente conta = new ContaCorrente(numero, cliente, limiteChequeEspecial);
 
         contaDAO.salvar(conta);
         contas.put(numero, conta);
@@ -107,6 +96,24 @@ public class BancoService {
 
         return conta;
     }
+
+    public ContaPoupanca abrirContaPoupanca(Cliente cliente)
+            throws ClienteNaoEncontradoException, SQLException {
+
+        if (cliente == null || !clientes.containsKey(cliente.getCpf()))
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
+
+        String numero = gerarNumeroConta();
+
+        ContaPoupanca conta = new ContaPoupanca(numero, cliente);
+
+        contaDAO.salvar(conta);
+        contas.put(numero, conta);
+        cliente.adicionarConta(conta);
+
+        return conta;
+    }
+
 
     public void atualizarContas(Conta conta) throws SQLException {
         contaDAO.atualizar(conta);
@@ -183,11 +190,11 @@ public class BancoService {
     }
 
     public Map<String, Cliente> getClientes() {
-        return new HashMap<>(clientes);
+        return this.clientes;
     }
 
     public Map<String, Conta> getContas() {
-        return new HashMap<>(contas);
+        return this.contas;
     }
 
     // ---------------------------

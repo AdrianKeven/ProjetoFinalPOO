@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package gui.telas;
+import javax.swing.JOptionPane; // Para mostrar mensagens
+import entidades.Conta;         // Sua classe Conta
+import gui.GuiController;       // Para acessar o serviço do banco
 
 /**
  *
@@ -54,6 +57,11 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
         });
 
         BtnBuscar.setText("Buscar");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
 
         LabelNome.setText("Nome: ");
 
@@ -141,6 +149,43 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_BtnFecharActionPerformed
+
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        // TODO add your handling code here:
+          String numeroConta = CampoNumConta.getText().trim();
+
+    if (numeroConta.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Informe o número da conta.");
+        return;
+    }
+
+    try {
+        // Busca a conta pelo número
+        entidades.Conta conta = gui.GuiController.getBancoService().buscarConta(numeroConta);
+
+        // Preenche os labels com os dados
+        LabelNome.setText("Nome: " + conta.getProprietario().getNome());
+        LabelCPF.setText("CPF: " + conta.getProprietario().getCpf());
+        LabelTipo.setText("Tipo: " + conta.getTipo());
+        LabelSaldo.setText("Saldo: R$ " + String.format("%.2f", conta.getSaldo()));
+
+        // Caso seja conta corrente com limite
+        if (conta.getTipo().equalsIgnoreCase("Corrente")) {
+            LabelLimite.setText("Limite Cheque Especial: R$ " + String.format("%.2f", conta.getLimite()));
+        } else {
+            LabelLimite.setText("Limite Cheque Especial: Não aplicável");
+        }
+
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Conta não encontrada.");
+        // Limpar labels caso erro
+        LabelNome.setText("Nome: ");
+        LabelCPF.setText("CPF: ");
+        LabelTipo.setText("Tipo: ");
+        LabelSaldo.setText("Saldo: ");
+        LabelLimite.setText("Limite Cheque Especial: ");
+    }
+    }//GEN-LAST:event_BtnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

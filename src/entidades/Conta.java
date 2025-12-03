@@ -1,5 +1,6 @@
 package entidades;
 
+import dao.ContaDAOJdbc;
 import utilitarios.SaldoInsuficienteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public abstract class Conta {
         if (proprietario == null) {
             throw new IllegalArgumentException("Proprietário não pode ser nulo.");
         }
+
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
 
@@ -36,6 +38,18 @@ public abstract class Conta {
 
         // ADICIONA AUTOMATICAMENTE A CONTA AO CLIENTE
         proprietario.adicionarConta(this);
+    }
+
+    public Conta(String numero, Cliente proprietario, double saldo, String tipo) {
+        if (proprietario == null)
+            throw new IllegalArgumentException("Proprietário não pode ser nulo.");
+
+        this.numero = numero;
+        this.proprietario = proprietario;
+        this.saldo = saldo;
+        this.tipo = tipo.toLowerCase(Locale.ROOT).trim();
+        this.historicoTransacoes = new ArrayList<>();
+
     }
 
     public String getNumero() {
