@@ -15,30 +15,30 @@ public abstract class Conta {
     private final List<String> historicoTransacoes;
     protected String tipo;
 
-    public Conta(Cliente proprietario, String tipo) {
-
-        if (proprietario == null) {
-            throw new IllegalArgumentException("Proprietário não pode ser nulo.");
-        }
-
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < 5; i++) {
-            int numero = random.nextInt(10); // gera número de 0 a 9
-            sb.append(numero);
-        }
-        String numero = sb.toString();
-
-        this.proprietario = proprietario;
-        this.numero = numero.trim();
-        this.saldo = 0;
-        this.historicoTransacoes = new ArrayList<>();
-        this.tipo = tipo.toLowerCase(Locale.ROOT).trim();
-
-        // ADICIONA AUTOMATICAMENTE A CONTA AO CLIENTE
-        proprietario.adicionarConta(this);
-    }
+//    public Conta(Cliente proprietario, String tipo) {
+//
+//        if (proprietario == null) {
+//            throw new IllegalArgumentException("Proprietário não pode ser nulo.");
+//        }
+//
+//        Random random = new Random();
+//        StringBuilder sb = new StringBuilder();
+//
+//        for (int i = 0; i < 5; i++) {
+//            int numero = random.nextInt(10); // gera número de 0 a 9
+//            sb.append(numero);
+//        }
+//        String numero = sb.toString();
+//
+//        this.proprietario = proprietario;
+//        this.numero = numero.trim();
+//        this.saldo = 0;
+//        this.historicoTransacoes = new ArrayList<>();
+//        this.tipo = tipo.toLowerCase(Locale.ROOT).trim();
+//
+//        // ADICIONA AUTOMATICAMENTE A CONTA AO CLIENTE
+//        proprietario.adicionarConta(this);
+//    }
 
     public Conta(String numero, Cliente proprietario, double saldo, String tipo) {
         if (proprietario == null)
