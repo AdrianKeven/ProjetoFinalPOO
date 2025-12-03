@@ -92,6 +92,11 @@ public class TelaContas extends javax.swing.JFrame {
         jPanel3.add(BotAlterar);
 
         BotDesativa.setText("Desativar Conta ");
+        BotDesativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotDesativaActionPerformed(evt);
+            }
+        });
         jPanel3.add(BotDesativa);
 
         jButton5.setText("Voltar");
@@ -117,6 +122,11 @@ public class TelaContas extends javax.swing.JFrame {
         // TODO add your handling code here:
         new TelaCriarConta(this,true).setVisible(true);
     }//GEN-LAST:event_BotCriarActionPerformed
+
+    private void BotDesativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotDesativaActionPerformed
+        // TODO add your handling code here:
+        new TelaDesativarCOnta(this,true).setVisible(true);
+    }//GEN-LAST:event_BotDesativaActionPerformed
 
     /**
      * @param args the command line arguments
