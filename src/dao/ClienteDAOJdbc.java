@@ -2,6 +2,7 @@ package dao;
 
 import entidades.Cliente;
 import util.DBConnection;
+import utilitarios.ClienteNaoEncontradoException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,15 +38,20 @@ public class ClienteDAOJdbc implements ClienteDAO {
     }
 
     @Override
-    public void deletar(String cpf) throws SQLException {
+    public void deletar(String cpf) throws SQLException, ClienteNaoEncontradoException {
         String sql = "DELETE FROM Cliente WHERE cpf = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, cpf);
-            ps.executeUpdate();
+            int afetados = ps.executeUpdate();
+
+            if (afetados == 0) {
+                throw new ClienteNaoEncontradoException("Cliente não existe no banco de dados");
+            }
         }
     }
+
 
     @Override
     public Cliente buscarPorCpf(String cpf) throws SQLException {

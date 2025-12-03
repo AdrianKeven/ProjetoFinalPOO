@@ -55,13 +55,25 @@ public class BancoService {
         clientes.put(cliente.getCpf(), cliente);
     }
 
-    public void removerCliente(String cpf) throws ClienteNaoEncontradoException, SQLException {
-        if (!clientes.containsKey(cpf))
-            throw new ClienteNaoEncontradoException("Cliente não encontrado");
+    public void removerCliente(String cpf) throws ClienteNaoEncontradoException, SQLException, Exception {
 
+        // 1. Verifica se o cliente existe no mapa
+        if (!clientes.containsKey(cpf)) {
+            throw new ClienteNaoEncontradoException("Cliente não encontrado");
+        }
+
+        // 2. Verifica se ele tem contas
+        if (contaDAO.temContas(cpf)) {
+            throw new Exception("Cliente possui contas e não pode ser removido.");
+        }
+
+        // 3. Remove do banco
         clienteDAO.deletar(cpf);
+
+        // 4. Remove do mapa
         clientes.remove(cpf);
     }
+
 
     // ---------------------------
     // CRUD CONTAS

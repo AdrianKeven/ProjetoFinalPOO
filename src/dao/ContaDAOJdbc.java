@@ -195,4 +195,22 @@ public class ContaDAOJdbc implements ContaDAO {
             System.out.println("Erro ao atualizar contas: " + e.getMessage());
         }
     }
+
+    public boolean temContas(String cpf) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM conta WHERE proprietario_cpf = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // true se existir conta
+            }
+        }
+
+        return false;
+    }
+
 }

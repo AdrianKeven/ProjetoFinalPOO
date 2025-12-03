@@ -2,6 +2,9 @@ package gui.telas;
 
 import javax.swing.JOptionPane;
 import gui.GuiController;
+import utilitarios.ClienteNaoEncontradoException;
+
+import java.sql.SQLException;
 
 /**
  *
@@ -162,17 +165,24 @@ public class TelaRemoverCliente extends javax.swing.JDialog {
         if(resposta != JOptionPane.YES_NO_OPTION){
             return;
         }
-        
-        try{
+        try {
             GuiController.getBancoService().removerCliente(cpf);
-            JOptionPane.showMessageDialog(this, "Cliente removido");
+
+            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso!");
             CampoCPF.setText("");
             LabelNome.setText("Nome: ");
             LabelEndereco.setText("Endereco: ");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Cliente nao encontrado");
+
+        } catch (ClienteNaoEncontradoException e) {
+            JOptionPane.showMessageDialog(this, "Cliente não encontrado");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro no banco de dados: " + e.getMessage());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage()); // aqui aparece "Cliente possui contas e não pode ser removido."
         }
-        
+
     }//GEN-LAST:event_BoRemoverActionPerformed
 
     /**
