@@ -5,6 +5,7 @@
 package gui.telas;
 import javax.swing.JOptionPane; // Para mostrar mensagens
 import entidades.Conta;         // Sua classe Conta
+import entidades.ContaCorrente;
 import gui.GuiController;       // Para acessar o serviço do banco
 
 /**
@@ -171,7 +172,7 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
 
         // Caso seja conta corrente com limite
         if (conta.getTipo().equalsIgnoreCase("Corrente")) {
-            LabelLimite.setText("Limite Cheque Especial: R$ " + String.format("%.2f", conta.getLimite()));
+            LabelLimite.setText("Limite Cheque Especial: R$ " + String.format("%.2f",conta.getLimiteChequeEspecial()));
         } else {
             LabelLimite.setText("Limite Cheque Especial: Não aplicável");
         }

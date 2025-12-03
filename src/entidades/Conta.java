@@ -64,6 +64,10 @@ public abstract class Conta {
         return proprietario;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     public List<String> getHistoricoTransacoes() {
         return historicoTransacoes;
     }
@@ -81,6 +85,8 @@ public abstract class Conta {
     public abstract void sacar(double valor) throws SaldoInsuficienteException;
 
     public abstract void transferir(Conta destino, double valor) throws SaldoInsuficienteException;
+
+    public double getLimiteChequeEspecial(){return 0.0;}
 
     @Override
     public String toString() {
