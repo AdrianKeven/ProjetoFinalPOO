@@ -3,6 +3,8 @@ package entidades;
 import utilitarios.SaldoInsuficienteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 public abstract class Conta {
 
@@ -10,20 +12,27 @@ public abstract class Conta {
     protected double saldo;
     private final Cliente proprietario;
     private final List<String> historicoTransacoes;
+    protected String tipo;
 
-    public Conta(Cliente proprietario, String numero) {
+    public Conta(Cliente proprietario, String tipo) {
 
         if (proprietario == null) {
             throw new IllegalArgumentException("Proprietário não pode ser nulo.");
         }
-        if (numero == null || numero.isBlank()) {
-            throw new IllegalArgumentException("Número da conta inválido.");
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 5; i++) {
+            int numero = random.nextInt(10); // gera número de 0 a 9
+            sb.append(numero);
         }
+        String numero = sb.toString();
 
         this.proprietario = proprietario;
         this.numero = numero.trim();
         this.saldo = 0;
         this.historicoTransacoes = new ArrayList<>();
+        this.tipo = tipo.toLowerCase(Locale.ROOT).trim();
 
         // ADICIONA AUTOMATICAMENTE A CONTA AO CLIENTE
         proprietario.adicionarConta(this);

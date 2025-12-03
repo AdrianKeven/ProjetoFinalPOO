@@ -6,8 +6,8 @@ public class ContaCorrente extends Conta {
 
     private double limiteChequeEspecial;
 
-    public ContaCorrente(Cliente proprietario, String numero, double limiteChequeEspecial) {
-        super(proprietario, numero);
+    public ContaCorrente(Cliente proprietario, double limiteChequeEspecial, String tipo) {
+        super(proprietario, tipo);
         this.limiteChequeEspecial = limiteChequeEspecial;
     }
 

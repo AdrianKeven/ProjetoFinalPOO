@@ -5,6 +5,7 @@
 package gui.telas;
 import gui.GuiController;
 import javax.swing.JOptionPane;
+import java.util.Random;
 
 
 /**
@@ -229,7 +230,7 @@ public class TelaCriarConta extends javax.swing.JDialog {
             limite = Double.parseDouble(txt);
         }
 
-        var novaConta = banco.abrirContaCorrente(cliente, tipoConta, limite);
+        var novaConta = banco.abrirContaCorrente(cliente, limite);
         JOptionPane.showMessageDialog(this, "Conta criada com sucesso!\nNúmero: " + novaConta.getNumero());
         this.dispose();
 

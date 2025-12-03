@@ -66,16 +66,16 @@ public class BancoService {
     // ---------------------------
     // CRUD CONTAS
     // ---------------------------
-    public ContaCorrente abrirContaCorrente(Cliente cliente, String numero, double limiteChequeEspecial)
+    public ContaCorrente abrirContaCorrente(Cliente cliente, double limiteChequeEspecial)
             throws ClienteNaoEncontradoException, SQLException {
 
         if (cliente == null || !clientes.containsKey(cliente.getCpf()))
             throw new ClienteNaoEncontradoException("Cliente não encontrado");
-
-        ContaCorrente conta = new ContaCorrente(cliente, numero, limiteChequeEspecial);
+        String tipo = "corrente";
+        ContaCorrente conta = new ContaCorrente(cliente, limiteChequeEspecial, tipo);
 
         contaDAO.salvar(conta);
-        contas.put(numero, conta);
+        contas.put(conta.getNumero(), conta);
         cliente.adicionarConta(conta);
 
         return conta;
@@ -86,8 +86,8 @@ public class BancoService {
 
         if (cliente == null || !clientes.containsKey(cliente.getCpf()))
             throw new ClienteNaoEncontradoException("Cliente não encontrado");
-
-        ContaPoupanca conta = new ContaPoupanca(cliente, numero);
+        String tipo = "poupanca";
+        ContaPoupanca conta = new ContaPoupanca(cliente, tipo);
 
         contaDAO.salvar(conta);
         contas.put(numero, conta);
@@ -137,6 +137,11 @@ public class BancoService {
             throw new ClienteNaoEncontradoException("Cliente não encontrado");
 
         return c;
+    }
+
+
+    public List<Conta> buscarContaProprietario(String cpf) throws ContaNaoEncontradaException, SQLException {
+        return contaDAO.listarPorCliente(cpf);
     }
 
     // ---------------------------

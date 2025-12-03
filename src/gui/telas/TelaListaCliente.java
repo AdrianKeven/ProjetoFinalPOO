@@ -1,5 +1,9 @@
 package gui.telas;
+import entidades.Cliente;
+import entidades.Conta;
 import gui.GuiController;
+
+import java.util.List;
 
 /**
  *
@@ -102,31 +106,52 @@ public class TelaListaCliente extends javax.swing.JDialog {
         });
         
     }
-    
-        public void carregarTabela(){
-            GuiController.getBancoService().atualizarMapCliente();
-            GuiController.getBancoService().atualizarMapContas();
-            var cliente = GuiController.getBancoService().getClientes();
-            String[]colunas = {"Nome", "CPF","Endereço","Num Contas"};
-            Object[][]dados = new Object [cliente.size()][4];
-            
-            int i = 0;
-            for(entidades.Cliente c : cliente.values()){
-                dados[i][0]= c.getNome();
-                dados[i][1]=c.getCpf();
-                dados[i][2]=c.getEndereco();
-                dados[i][3]=(c.getContas()== null ? 0 : c.getContas().size());
-                i++;
+
+    public void carregarTabela() {
+        GuiController.getBancoService().atualizarMapCliente();
+        GuiController.getBancoService().atualizarMapContas();
+
+        var banco = GuiController.getBancoService();
+        var clientes = banco.getClientes();
+
+        String[] colunas = {"Nome", "CPF", "Endereço", "Contas"};
+        Object[][] dados = new Object[clientes.size()][4];
+
+        int i = 0;
+        for (Cliente c : clientes.values()) {
+
+            String contasStr = "";
+            try {
+                List<Conta> contasCliente = banco.listarTodasContaClinte(c.getCpf());
+
+                if (contasCliente.isEmpty()) {
+                    contasStr = "Nenhuma";
+                } else {
+                    StringBuilder sb = new StringBuilder();
+                    for (Conta conta : contasCliente) {
+                        sb.append(conta.getNumero()).append(" | ");
+                    }
+                    contasStr = sb.toString().replaceAll(" \\| $", "");
+                }
+            } catch (Exception ex) {
+                contasStr = "Erro";
             }
-            tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(dados,colunas){
-                
-                @Override
-                public boolean isCellEditable(int row, int column){
-                    return false;
+
+            dados[i][0] = c.getNome();
+            dados[i][1] = c.getCpf();
+            dados[i][2] = c.getEndereco();
+            dados[i][3] = contasStr;
+
+            i++;
         }
-    
-    });
-        }
+
+        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(dados, colunas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

@@ -93,9 +93,9 @@ public class ContaDAOJdbc implements ContaDAO {
                     Conta conta;
 
                     if ("corrente".equalsIgnoreCase(tipo)) {
-                        conta = new ContaCorrente(proprietario, numero, limite);
+                        conta = new ContaCorrente(proprietario, limite, tipo);
                     } else {
-                        conta = new ContaPoupanca(proprietario, numero);
+                        conta = new ContaPoupanca(proprietario, tipo);
                     }
 
                     conta.setSaldoBD(saldoBD);
@@ -124,6 +124,8 @@ public class ContaDAOJdbc implements ContaDAO {
             while (rs.next()) {
                 lista.add(buscarPorNumero(rs.getString("numero")));
             }
+        } catch (Exception e) {
+            throw new SQLException(e);
         }
         return lista;
     }
@@ -180,9 +182,9 @@ public class ContaDAOJdbc implements ContaDAO {
                 Conta conta;
 
                 if ("corrente".equalsIgnoreCase(tipo)) {
-                    conta = new ContaCorrente(cliente, numero,limite);
+                    conta = new ContaCorrente(cliente,limite, tipo);
                 } else {
-                    conta = new ContaPoupanca(cliente, numero);
+                    conta = new ContaPoupanca(cliente, tipo);
                 }
 
                 conta.setSaldoBD(saldo);

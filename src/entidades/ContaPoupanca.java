@@ -6,8 +6,8 @@ public class ContaPoupanca extends Conta {
 
     private static final double TAXA_RENDIMENTO_MENSAL = 0.01;
 
-    public ContaPoupanca(Cliente proprietario, String numero) {
-        super(proprietario, numero);
+    public ContaPoupanca(Cliente proprietario, String tipo) {
+        super(proprietario, tipo);
     }
 
     @Override
