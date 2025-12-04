@@ -48,8 +48,8 @@ public class BancoService {
 
         Cliente cliente = new Cliente(nome, cpf, endereco);
 
-        clienteDAO.salvar(cliente);   // grava no banco
-        clientes.put(cpf, cliente);   // grava no mapa
+        clienteDAO.salvar(cliente);
+        clientes.put(cpf, cliente);
     }
 
     public void atualizarCliente(Cliente cliente) throws SQLException {
@@ -59,20 +59,16 @@ public class BancoService {
 
     public void removerCliente(String cpf) throws ClienteNaoEncontradoException, SQLException, Exception {
 
-        // 1. Verifica se o cliente existe no mapa
         if (!clientes.containsKey(cpf)) {
             throw new ClienteNaoEncontradoException("Cliente não encontrado");
         }
 
-        // 2. Verifica se ele tem contas
         if (contaDAO.temContas(cpf)) {
             throw new Exception("Cliente possui contas e não pode ser removido.");
         }
 
-        // 3. Remove do banco
         clienteDAO.deletar(cpf);
 
-        // 4. Remove do mapa
         clientes.remove(cpf);
     }
 
@@ -140,6 +136,10 @@ public class BancoService {
     // ---------------------------
     public Conta buscarConta(String numeroConta) throws ContaNaoEncontradaException {
         atualizarMapContas();
+
+        //Log Atualizacao Map
+        System.out.println("Map atualizado");
+
         Conta conta = contas.get(numeroConta);
 
         if (conta == null)
@@ -150,6 +150,10 @@ public class BancoService {
 
     public Cliente buscarCliente(String cpf) throws ClienteNaoEncontradoException {
         atualizarMapCliente();
+
+        //Log Atualizacao Map
+        System.out.println("Map atualizado");
+
         Cliente c = clientes.get(cpf);
 
         if (c == null)
@@ -190,31 +194,65 @@ public class BancoService {
     }
 
     public Map<String, Cliente> getClientes() {
+        atualizarMapCliente();
+
+        //Log Atualizacao Map
+        System.out.println("Map atualizado");
+
         return this.clientes;
     }
 
     public Map<String, Conta> getContas() {
+        atualizarMapContas();
+
+        //Log Atualizacao Map
+        System.out.println("Map atualizado");
+
         return this.contas;
     }
 
     // ---------------------------
     // OPERAÇÕES
     // ---------------------------
-    public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException {
+    public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException, SQLException {
         buscarConta(numeroConta).depositar(valor);
+
+        double novoSaldo = contaDAO.buscarSaldoBD(numeroConta) + valor;
+        contaDAO.atualizarSaldoBD(numeroConta,novoSaldo);
+
+        //Log de Deposito
+        System.out.println("Operacao de Deposito realizada");
+        System.out.println("Saldo da conta: " + contaDAO.buscarSaldoBD(numeroConta));
     }
 
-    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException {
+    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException, SQLException {
         buscarConta(numeroConta).sacar(valor);
+
+        double novoSaldo = contaDAO.buscarSaldoBD(numeroConta) - valor;
+        contaDAO.atualizarSaldoBD(numeroConta,novoSaldo);
+
+        //log de Saque
+        System.out.println("Operacao de Saque realizada");
+        System.out.println("Saldo da conta: " + contaDAO.buscarSaldoBD(numeroConta));
     }
 
     public void realizarTransferencia(String origem, String destino, double valor)
-            throws ContaNaoEncontradaException {
+            throws ContaNaoEncontradaException, SQLException {
 
         Conta cOrigem = buscarConta(origem);
         Conta cDestino = buscarConta(destino);
 
         cOrigem.transferir(cDestino, valor);
+        double novoSaldoOrigem = contaDAO.buscarSaldoBD(origem) - valor;
+        double novoSaldoDestino = contaDAO.buscarSaldoBD(destino) + valor;
+
+        contaDAO.atualizarSaldoBD(origem,novoSaldoOrigem);
+        contaDAO.atualizarSaldoBD(destino,novoSaldoDestino);
+
+        // log de Transferencia
+        System.out.println("Transferencia realizada");
+        System.out.println("Saldo da origem: " + contaDAO.buscarSaldoBD(origem));
+        System.out.println("Saldo do destino: " + contaDAO.buscarSaldoBD(destino));
     }
 
     public void atualizarMapCliente() {

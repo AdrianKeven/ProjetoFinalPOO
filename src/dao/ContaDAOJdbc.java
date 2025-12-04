@@ -50,6 +50,25 @@ public class ContaDAOJdbc implements ContaDAO {
         }
     }
 
+    public void atualizarSaldoBD(String numeroConta, double novoSaldo) throws SQLException {
+        String sql = "UPDATE Conta SET saldo = ? WHERE numero = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setDouble(1, novoSaldo);
+            ps.setString(2,numeroConta);
+
+            int linhas = ps.executeUpdate();
+            if (linhas == 0) {
+                throw new SQLException("Falha ao atualizar saldo. Conta não encontrada com ID: " + numeroConta);
+            }
+        }
+    }
+
+
+
+
     // -----------------------------
     // DELETAR CONTA
     // -----------------------------
@@ -69,7 +88,7 @@ public class ContaDAOJdbc implements ContaDAO {
     }
 
     // -----------------------------
-    // BUSCAR POR NÚMERO
+    // BUSCAS
     // -----------------------------
     @Override
     public Conta buscarPorNumero(String numero) throws SQLException {
@@ -104,6 +123,23 @@ public class ContaDAOJdbc implements ContaDAO {
             }
         }
         return null;
+    }
+
+    public double buscarSaldoBD(String numeroConta) throws SQLException {
+        String sql = "SELECT saldo FROM Conta WHERE numero = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, numeroConta);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble("saldo");
+            } else {
+                throw new SQLException("Conta não encontrada com ID: " + numeroConta);
+            }
+        }
     }
 
     // -----------------------------

@@ -173,7 +173,7 @@ public class TelaDesativarCOnta extends javax.swing.JDialog {
         // Verifica saldo antes de remover
         if (conta.getSaldo() != 0) {
             JOptionPane.showMessageDialog(this,
-                "🔴 A conta possui saldo. É preciso zerar antes de desativar.",
+                "A conta possui saldo. É preciso zerar antes de desativar.",
                 "Saldo não zerado",
                 JOptionPane.WARNING_MESSAGE);
             return;
@@ -224,7 +224,7 @@ public class TelaDesativarCOnta extends javax.swing.JDialog {
         // Habilitar ou não o botão de desativar
         if(conta.getSaldo() != 0){
             JOptionPane.showMessageDialog(this,
-                "🔴 A conta possui saldo. É preciso zerar antes de desativar.",
+                "A conta possui saldo. É preciso zerar antes de desativar.",
                 "Saldo não zerado",
                 JOptionPane.WARNING_MESSAGE);
             BotDesativar.setEnabled(false);
