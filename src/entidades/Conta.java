@@ -11,7 +11,7 @@ public abstract class Conta {
 
     private final String numero;
     protected double saldo;
-    private final Cliente proprietario;
+    private Cliente proprietario;
     private final List<String> historicoTransacoes;
     protected String tipo;
 
@@ -78,6 +78,30 @@ public abstract class Conta {
 
     public void setSaldoBD(double saldo) {
         this.saldo = saldo;
+    }
+    
+    public void setProprietario(Cliente novoProprietario) {
+        if (novoProprietario == null) {
+            throw new IllegalArgumentException("Novo proprietário não pode ser nulo.");
+        }
+
+        // se já for o mesmo proprietário, não faz nada
+        if (this.proprietario != null && this.proprietario.equals(novoProprietario)) {
+            return;
+        }
+
+        // remove a conta da lista do proprietário atual (se existir)
+        if (this.proprietario != null) {
+            try {
+                this.proprietario.getContas().remove(this);
+            } catch (Exception ignored) {}
+        }
+
+        // define o novo proprietário e adiciona a conta à lista dele
+        this.proprietario = novoProprietario;
+        try {
+            novoProprietario.adicionarConta(this);
+        } catch (Exception ignored) {}
     }
 
     public abstract void depositar(double valor);

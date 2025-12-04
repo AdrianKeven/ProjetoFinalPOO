@@ -3,12 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package gui.telas;
-
+import javax.swing.JOptionPane;
+import gui.GuiController;
+import entidades.Conta;
+import entidades.ContaCorrente;
+import entidades.ContaPoupanca;
 /**
  *
  * @author samel
  */
 public class TelaDeposito extends javax.swing.JDialog {
+    private Conta contaAtual = null;
 
     /**
      * Creates new form TelaDeposito
@@ -16,6 +21,9 @@ public class TelaDeposito extends javax.swing.JDialog {
     public TelaDeposito(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        BotDepositar.setEnabled(false);
+        
     }
 
     /**
@@ -27,26 +35,64 @@ public class TelaDeposito extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        LabelNumConta = new javax.swing.JLabel();
+        CampoConta = new javax.swing.JTextField();
+        BotBuscar = new javax.swing.JButton();
+        LabelTitular = new javax.swing.JLabel();
+        LabelCPF = new javax.swing.JLabel();
+        LabelTipo = new javax.swing.JLabel();
+        LabelSaldo = new javax.swing.JLabel();
+        LabelValor = new javax.swing.JLabel();
+        BotDepositar = new javax.swing.JButton();
+        CampoValor = new javax.swing.JTextField();
+        BotLimpar = new javax.swing.JButton();
+        BotCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 28, Short.MAX_VALUE)
-        );
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("DEPÓSITO EM CONTA");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LabelNumConta.setText("Número da conta: ");
+
+        BotBuscar.setText("Buscar");
+        BotBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotBuscarActionPerformed(evt);
+            }
+        });
+
+        LabelTitular.setText("Titular:");
+
+        LabelCPF.setText("CPF:");
+
+        LabelTipo.setText("Tipo:");
+
+        LabelSaldo.setText("Saldo atual:");
+
+        LabelValor.setText("Valor para depósito: ");
+
+        BotDepositar.setText("Depósitar");
+        BotDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotDepositarActionPerformed(evt);
+            }
+        });
+
+        BotLimpar.setText("Limpar");
+        BotLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotLimparActionPerformed(evt);
+            }
+        });
+
+        BotCancelar.setText("Cancelar");
+        BotCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotCancelarActionPerformed(evt);
             }
         });
 
@@ -54,32 +100,153 @@ public class TelaDeposito extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelTitular)
+                    .addComponent(LabelCPF)
+                    .addComponent(LabelTipo)
+                    .addComponent(LabelSaldo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(LabelValor)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(CampoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(LabelNumConta)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(CampoConta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotBuscar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(BotDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BotLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BotCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(112, 112, 112))
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelNumConta)
+                    .addComponent(CampoConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LabelTitular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LabelCPF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LabelTipo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LabelSaldo)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelValor)
+                    .addComponent(CampoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotDepositar)
+                    .addComponent(BotLimpar)
+                    .addComponent(BotCancelar))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotBuscarActionPerformed
+        String numero = CampoConta.getText().trim();
+
+    if(numero.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite o número da conta.");
+        return;
+    }
+
+    try {
+        contaAtual = GuiController.getBancoService().buscarConta(numero);
+
+        LabelTitular.setText("Titular: " + contaAtual.getProprietario().getNome());
+        LabelCPF.setText("CPF: " + contaAtual.getProprietario().getCpf());
+        LabelTipo.setText("Tipo: " + contaAtual.getTipo());
+        LabelSaldo.setText("Saldo: R$ " + String.format("%.2f", contaAtual.getSaldo()));
+
+        BotDepositar.setEnabled(true);
+
+    } catch (Exception e){
+        JOptionPane.showMessageDialog(this, "Conta não encontrada!");
+        BotDepositar.setEnabled(false);
+    }
+    }//GEN-LAST:event_BotBuscarActionPerformed
+
+    private void BotDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotDepositarActionPerformed
+        if(contaAtual == null){
+        JOptionPane.showMessageDialog(this, "Busque uma conta primeiro!");
+        return;
+    }
+
+    String textoValor = CampoValor.getText().trim();
+
+    if(textoValor.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite o valor do depósito.");
+        return;
+    }
+
+    try {
+        double valor = Double.parseDouble(textoValor.replace(",", "."));
+
+        if(valor <= 0){
+            JOptionPane.showMessageDialog(this, "Informe um valor maior que zero.");
+            return;
+        }
+
+        // FAZ O DEPÓSITO NO BANCO
+        GuiController.getBancoService().realizarDeposito(
+                contaAtual.getNumero(), valor
+        );
+
+        // BUSCA O SALDO VERDADEIRO NO BD
+        double saldoBD = GuiController.getBancoService()
+                                     .buscarConta(contaAtual.getNumero())
+                                     .getSaldo();
+
+        // ATUALIZA NA TELA
+        LabelSaldo.setText("Saldo: R$ " + String.format("%.2f", saldoBD));
+
+        JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!");
+
+        CampoValor.setText("");
+
+    } catch (NumberFormatException e){
+        JOptionPane.showMessageDialog(this, "Valor inválido.");
+    } catch (Exception e){
+        JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
+    }
+    }//GEN-LAST:event_BotDepositarActionPerformed
+
+    private void BotLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotLimparActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+            CampoConta.setText("");
+    CampoValor.setText("");
+
+    LabelTitular.setText("Titular:");
+    LabelCPF.setText("CPF:");
+    LabelTipo.setText("Tipo:");
+    LabelSaldo.setText("Saldo:");
+
+    contaAtual = null;
+
+    BotDepositar.setEnabled(false);
+    }//GEN-LAST:event_BotLimparActionPerformed
+
+    private void BotCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_BotCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,7 +291,18 @@ public class TelaDeposito extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JButton BotBuscar;
+    private javax.swing.JButton BotCancelar;
+    private javax.swing.JButton BotDepositar;
+    private javax.swing.JButton BotLimpar;
+    private javax.swing.JTextField CampoConta;
+    private javax.swing.JTextField CampoValor;
+    private javax.swing.JLabel LabelCPF;
+    private javax.swing.JLabel LabelNumConta;
+    private javax.swing.JLabel LabelSaldo;
+    private javax.swing.JLabel LabelTipo;
+    private javax.swing.JLabel LabelTitular;
+    private javax.swing.JLabel LabelValor;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

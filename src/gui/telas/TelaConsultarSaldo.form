@@ -23,51 +23,45 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
+          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="BotLimpar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="LabelTitular" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="LabelCPF" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="LabelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="LabelSaldo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelValor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="CampoValor" min="-2" pref="160" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelNumConta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="CampoConta" min="-2" pref="99" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="BotBuscar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="BotDepositar" min="-2" pref="91" max="-2" attributes="0"/>
+                      <Component id="LabelNumConta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BotLimpar" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="CampoConta" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BotCancelar" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="BotBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="LabelCPF" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LabelTipo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LabelCheque" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="LabelSaldo" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LabelNumConta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CampoConta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BotBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="LabelTitular" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LabelCPF" min="-2" max="-2" attributes="0"/>
@@ -75,35 +69,23 @@
               <Component id="LabelTipo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LabelSaldo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="LabelValor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CampoValor" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BotDepositar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BotLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BotCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LabelCheque" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="BotLimpar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
+          <Font name="Segoe UI" size="20" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="DEP&#xd3;SITO EM CONTA"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
+        <Property name="text" type="java.lang.String" value="CONSULTAR SALDO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LabelNumConta">
@@ -116,6 +98,9 @@
     <Component class="javax.swing.JButton" name="BotBuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotBuscarActionPerformed"/>
@@ -123,12 +108,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelTitular">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Titular:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="LabelCPF">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="CPF:"/>
+        <Property name="text" type="java.lang.String" value="Titular: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LabelTipo">
@@ -136,41 +116,37 @@
         <Property name="text" type="java.lang.String" value="Tipo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelSaldo">
+    <Component class="javax.swing.JLabel" name="LabelCheque">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Saldo atual:"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Lim.Cheque Especial: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelValor">
+    <Component class="javax.swing.JLabel" name="LabelCPF">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Valor para dep&#xf3;sito: "/>
+        <Property name="text" type="java.lang.String" value="CPF:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BotDepositar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Dep&#xf3;sitar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotDepositarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="CampoValor">
     </Component>
     <Component class="javax.swing.JButton" name="BotLimpar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpar"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotLimparActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BotCancelar">
+    <Component class="javax.swing.JLabel" name="LabelSaldo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Saldo:"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotCancelarActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

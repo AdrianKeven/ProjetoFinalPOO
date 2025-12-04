@@ -261,4 +261,7 @@ public class BancoService {
     public void atualizarMapContas() {
         contaDAO.atualizarMaps(this.clientes,this.contas);
     }
+     public void atualizarConta(Conta conta) throws SQLException {
+        atualizarContas(conta);
+    }
 }

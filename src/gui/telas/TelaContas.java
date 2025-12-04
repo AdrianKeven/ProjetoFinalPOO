@@ -77,7 +77,9 @@ public class TelaContas extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.GridLayout(5, 1, 10, 10));
 
+        BotCriar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BotCriar.setText("Criar Conta ");
+        BotCriar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotCriarActionPerformed(evt);
@@ -85,13 +87,29 @@ public class TelaContas extends javax.swing.JFrame {
         });
         jPanel3.add(BotCriar);
 
+        BotConsulSaldo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BotConsulSaldo.setText("Consultar Saldo ");
+        BotConsulSaldo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotConsulSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotConsulSaldoActionPerformed(evt);
+            }
+        });
         jPanel3.add(BotConsulSaldo);
 
+        BotAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BotAlterar.setText("Alterar Titular ");
+        BotAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotAlterarActionPerformed(evt);
+            }
+        });
         jPanel3.add(BotAlterar);
 
+        BotDesativa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BotDesativa.setText("Desativar Conta ");
+        BotDesativa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotDesativa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotDesativaActionPerformed(evt);
@@ -99,7 +117,9 @@ public class TelaContas extends javax.swing.JFrame {
         });
         jPanel3.add(BotDesativa);
 
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setText("Voltar");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -127,6 +147,16 @@ public class TelaContas extends javax.swing.JFrame {
         // TODO add your handling code here:
         new TelaDesativarCOnta(this,true).setVisible(true);
     }//GEN-LAST:event_BotDesativaActionPerformed
+
+    private void BotAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotAlterarActionPerformed
+        // TODO add your handling code here:
+        new TelaAlterarConta(this,true).setVisible(true);
+    }//GEN-LAST:event_BotAlterarActionPerformed
+
+    private void BotConsulSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotConsulSaldoActionPerformed
+        // TODO add your handling code here:
+        new TelaConsultarSaldo(this,true).setVisible(true);
+    }//GEN-LAST:event_BotConsulSaldoActionPerformed
 
     /**
      * @param args the command line arguments
