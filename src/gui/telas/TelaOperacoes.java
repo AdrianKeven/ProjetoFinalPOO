@@ -33,6 +33,7 @@ public class TelaOperacoes extends javax.swing.JFrame {
         BotDeposito = new javax.swing.JButton();
         BotSaque = new javax.swing.JButton();
         BotTrans = new javax.swing.JButton();
+        BotHistorico = new javax.swing.JButton();
         BotVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,7 +75,7 @@ public class TelaOperacoes extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jPanel3.setLayout(new java.awt.GridLayout(4, 1, 10, 10));
+        jPanel3.setLayout(new java.awt.GridLayout(5, 1, 10, 10));
 
         BotDeposito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BotDeposito.setText("Depósito ");
@@ -105,6 +106,15 @@ public class TelaOperacoes extends javax.swing.JFrame {
             }
         });
         jPanel3.add(BotTrans);
+
+        BotHistorico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BotHistorico.setText("Histórico");
+        BotHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotHistoricoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BotHistorico);
 
         BotVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BotVoltar.setText("Voltar");
@@ -141,6 +151,12 @@ public class TelaOperacoes extends javax.swing.JFrame {
         // TODO add your handling code here:
         new TelaTransferencia(this,true).setVisible(true);
     }//GEN-LAST:event_BotTransActionPerformed
+
+    private void BotHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotHistoricoActionPerformed
+        // TODO add your handling code here:
+        TelaHistorico tela = new TelaHistorico(this, true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_BotHistoricoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +196,7 @@ public class TelaOperacoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotDeposito;
+    private javax.swing.JButton BotHistorico;
     private javax.swing.JButton BotSaque;
     private javax.swing.JButton BotTrans;
     private javax.swing.JButton BotVoltar;

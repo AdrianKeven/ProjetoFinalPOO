@@ -172,9 +172,9 @@ public class TelaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         TelaListaCliente tela = new TelaListaCliente(this, true);
 
-    tela.carregarTabela();
+        tela.carregarTabela();
 
-    tela.setVisible(true);
+        tela.setVisible(true);
 
     }//GEN-LAST:event_BtnListarActionPerformed
 
