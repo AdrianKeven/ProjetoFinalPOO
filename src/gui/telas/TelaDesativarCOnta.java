@@ -61,26 +61,33 @@ public class TelaDesativarCOnta extends javax.swing.JDialog {
         LabelDesativarCOnta.setText("Desativar Conta");
         LabelDesativarCOnta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        LabelConta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelConta.setText("Numero da conta: ");
 
         BotBuscar.setText("Buscar");
+        BotBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotBuscarActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Nome: ");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("CPF:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Saldo:");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Tipo de conta: ");
 
         BotDesativar.setBackground(new java.awt.Color(153, 0, 0));
         BotDesativar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BotDesativar.setText("Desativar conta");
+        BotDesativar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotDesativar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotDesativarActionPerformed(evt);
@@ -88,6 +95,7 @@ public class TelaDesativarCOnta extends javax.swing.JDialog {
         });
 
         Retornar.setText("Retornar");
+        Retornar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Retornar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RetornarActionPerformed(evt);

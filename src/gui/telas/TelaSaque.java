@@ -105,6 +105,11 @@ public class TelaSaque extends javax.swing.JDialog {
 
         BotCancelar.setText("Cancelar");
         BotCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,7 +143,6 @@ public class TelaSaque extends javax.swing.JDialog {
                                 .addComponent(CampoSaque)
                                 .addGap(88, 88, 88))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BotLimpar)
                                 .addGap(18, 18, 18)
                                 .addComponent(BotCancelar)
@@ -330,6 +334,11 @@ public class TelaSaque extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage());
     }
     }//GEN-LAST:event_BotSacarActionPerformed
+
+    private void BotCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_BotCancelarActionPerformed
 
     /**
      * @param args the command line arguments

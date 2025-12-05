@@ -51,7 +51,9 @@ public class TelaAlterarConta extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ALTERAR TITULAR DA CONTA");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        LabelNumConta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelNumConta.setText("Número da conta: ");
 
         CampoNumConta.addActionListener(new java.awt.event.ActionListener() {
@@ -61,14 +63,17 @@ public class TelaAlterarConta extends javax.swing.JDialog {
         });
 
         BotBuscar.setText("Buscar");
+        BotBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotBuscarActionPerformed(evt);
             }
         });
 
+        LabelTitularAtual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTitularAtual.setText("Titular atual da conta: ");
 
+        LabelNovoCPF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelNovoCPF.setText("Novo CPF: ");
 
         CampoNovoCPF.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +83,7 @@ public class TelaAlterarConta extends javax.swing.JDialog {
         });
 
         BotAlterar.setText("Alterar Titular");
+        BotAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotAlterarActionPerformed(evt);
@@ -85,14 +91,17 @@ public class TelaAlterarConta extends javax.swing.JDialog {
         });
 
         BotCancelar.setText("Cancelar");
+        BotCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotCancelarActionPerformed(evt);
             }
         });
 
+        LabelCPF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCPF.setText("CPF atual: ");
 
+        LabelTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTipo.setText("Tipo da conta: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,7 +156,7 @@ public class TelaAlterarConta extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotAlterar)
                     .addComponent(BotCancelar))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();

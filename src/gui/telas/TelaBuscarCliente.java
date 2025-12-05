@@ -55,6 +55,7 @@ public class TelaBuscarCliente extends javax.swing.JDialog {
         });
 
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
@@ -135,9 +136,9 @@ public class TelaBuscarCliente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabConta)
                     .addComponent(ResConta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(33, 33, 33))
+                .addContainerGap())
         );
 
         pack();

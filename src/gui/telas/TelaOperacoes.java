@@ -26,117 +26,121 @@ public class TelaOperacoes extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        LabelTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        LabelRodape = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BotDeposito = new javax.swing.JButton();
+        BotSaque = new javax.swing.JButton();
+        BotTrans = new javax.swing.JButton();
+        BotVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Operações Bancárias");
+        LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelTitulo.setText("Operações Bancárias");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+            .addComponent(LabelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(LabelTitulo)
                 .addGap(0, 17, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Sistema Bancário • Operações ");
+        LabelRodape.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelRodape.setText("Sistema Bancário • Operações ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+            .addComponent(LabelRodape, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jLabel2))
+                .addComponent(LabelRodape))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         jPanel3.setLayout(new java.awt.GridLayout(4, 1, 10, 10));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Depósito ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotDeposito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BotDeposito.setText("Depósito ");
+        BotDeposito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotDeposito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotDepositoActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1);
+        jPanel3.add(BotDeposito);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Saque ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BotSaque.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BotSaque.setText("Saque ");
+        BotSaque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotSaque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotSaqueActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2);
+        jPanel3.add(BotSaque);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("Transferência ");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BotTrans.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BotTrans.setText("Transferência ");
+        BotTrans.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotTrans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BotTransActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3);
+        jPanel3.add(BotTrans);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setText("Voltar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BotVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BotVoltar.setText("Voltar");
+        BotVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BotVoltarActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4);
+        jPanel3.add(BotVoltar);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotDepositoActionPerformed
         // TODO add your handling code here:
         new TelaDeposito(this,true).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotDepositoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void BotVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotVoltarActionPerformed
         // TODO add your handling code here:
         new TelaPrincipal().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_BotVoltarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BotSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotSaqueActionPerformed
         // TODO add your handling code here:
         new TelaSaque(this,true).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BotSaqueActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BotTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotTransActionPerformed
         // TODO add your handling code here:
         new TelaTransferencia(this,true).setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BotTransActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,12 +179,12 @@ public class TelaOperacoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton BotDeposito;
+    private javax.swing.JButton BotSaque;
+    private javax.swing.JButton BotTrans;
+    private javax.swing.JButton BotVoltar;
+    private javax.swing.JLabel LabelRodape;
+    private javax.swing.JLabel LabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

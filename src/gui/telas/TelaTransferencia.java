@@ -79,6 +79,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         });
 
         BotBuscarOrigem.setText("Buscar");
+        BotBuscarOrigem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotBuscarOrigem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotBuscarOrigemActionPerformed(evt);
@@ -96,6 +97,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         LabelCheque.setText("Cheque Especial:");
 
         BotConfirmarOrigem.setText("Confirmar");
+        BotConfirmarOrigem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotConfirmarOrigem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotConfirmarOrigemActionPerformed(evt);
@@ -105,6 +107,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         LabelDestino.setText("Número da conta(destino):");
 
         BotBuscarDestino.setText("Buscar");
+        BotBuscarDestino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotBuscarDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotBuscarDestinoActionPerformed(evt);
@@ -118,6 +121,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         LabelTipoDestinp.setText("Tipo:");
 
         BotConfirmarDestino.setText("Confirmar");
+        BotConfirmarDestino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotConfirmarDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotConfirmarDestinoActionPerformed(evt);
@@ -129,6 +133,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         BotExecutar.setBackground(new java.awt.Color(204, 255, 204));
         BotExecutar.setForeground(new java.awt.Color(51, 51, 51));
         BotExecutar.setText("Executar");
+        BotExecutar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotExecutar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotExecutarActionPerformed(evt);
@@ -136,6 +141,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         });
 
         BotLimpar.setText("Limpar");
+        BotLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotLimparActionPerformed(evt);
@@ -143,6 +149,7 @@ public class TelaTransferencia extends javax.swing.JDialog {
         });
 
         BotCancelar.setText("Cancelar");
+        BotCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotCancelarActionPerformed(evt);

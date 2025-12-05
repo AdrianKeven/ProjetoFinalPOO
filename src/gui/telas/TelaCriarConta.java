@@ -42,20 +42,33 @@ public class TelaCriarConta extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         ComboConta = new javax.swing.JComboBox<>();
         LabelLimite = new javax.swing.JLabel();
         CampoLimite = new javax.swing.JTextField();
-        BotCriar = new javax.swing.JButton();
-        BotLimpar = new javax.swing.JButton();
-        BotCancelar = new javax.swing.JButton();
         CampoCPF = new javax.swing.JTextField();
         LabelNome = new javax.swing.JLabel();
         LabelEndereco = new javax.swing.JLabel();
         LabelContas = new javax.swing.JLabel();
         BotBuscar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        BotCriar = new javax.swing.JButton();
+        BotLimpar = new javax.swing.JButton();
+        BotCancelar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,30 +97,6 @@ public class TelaCriarConta extends javax.swing.JDialog {
             }
         });
 
-        BotCriar.setText("Criar");
-        BotCriar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotCriar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotCriarActionPerformed(evt);
-            }
-        });
-
-        BotLimpar.setText("Limpar");
-        BotLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotLimparActionPerformed(evt);
-            }
-        });
-
-        BotCancelar.setText("Cancelar");
-        BotCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotCancelarActionPerformed(evt);
-            }
-        });
-
         LabelNome.setText("Nome:       ");
 
         LabelEndereco.setText("Endereco:");
@@ -121,6 +110,35 @@ public class TelaCriarConta extends javax.swing.JDialog {
                 BotBuscarActionPerformed(evt);
             }
         });
+
+        jPanel2.setLayout(new java.awt.GridLayout());
+
+        BotCriar.setText("Criar");
+        BotCriar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotCriarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BotCriar);
+
+        BotLimpar.setText("Limpar");
+        BotLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotLimparActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BotLimpar);
+
+        BotCancelar.setText("Cancelar");
+        BotCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotCancelarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BotCancelar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,24 +155,20 @@ public class TelaCriarConta extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CampoCPF))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ComboConta, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelLimite)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CampoLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ComboConta, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(LabelLimite)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CampoLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(75, 75, 75)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotBuscar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(BotCriar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotLimpar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotCancelar))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(LabelNome))
@@ -166,6 +180,7 @@ public class TelaCriarConta extends javax.swing.JDialog {
                                 .addComponent(LabelContas)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,11 +205,8 @@ public class TelaCriarConta extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelLimite)
                     .addComponent(CampoLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotCriar)
-                    .addComponent(BotLimpar)
-                    .addComponent(BotCancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -364,5 +376,7 @@ public class TelaCriarConta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

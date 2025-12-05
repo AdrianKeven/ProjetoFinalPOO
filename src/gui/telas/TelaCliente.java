@@ -38,7 +38,7 @@ public class TelaCliente extends javax.swing.JFrame {
         LabelRodape = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 255, 204));
         getContentPane().setLayout(new java.awt.BorderLayout(10, 10));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N

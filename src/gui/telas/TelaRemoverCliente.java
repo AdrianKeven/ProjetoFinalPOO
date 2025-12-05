@@ -47,9 +47,11 @@ public class TelaRemoverCliente extends javax.swing.JDialog {
         jLabel2.setText("Remover Clientes");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        LabelCPF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCPF.setText("CPF:");
 
         BotBuscar.setText("Buscar");
+        BotBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotBuscarActionPerformed(evt);
@@ -57,6 +59,7 @@ public class TelaRemoverCliente extends javax.swing.JDialog {
         });
 
         BoRemover.setText("Remover");
+        BoRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BoRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BoRemoverActionPerformed(evt);
@@ -64,14 +67,17 @@ public class TelaRemoverCliente extends javax.swing.JDialog {
         });
 
         BotCancelar.setText("Cancelar");
+        BotCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotCancelarActionPerformed(evt);
             }
         });
 
+        LabelNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelNome.setText("Nome:");
 
+        LabelEndereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelEndereco.setText("Endereço:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,15 +116,15 @@ public class TelaRemoverCliente extends javax.swing.JDialog {
                     .addComponent(LabelCPF)
                     .addComponent(CampoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotBuscar))
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(LabelNome)
                 .addGap(18, 18, 18)
                 .addComponent(LabelEndereco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BoRemover)
                     .addComponent(BotCancelar))
-                .addGap(71, 71, 71))
+                .addGap(20, 20, 20))
         );
 
         pack();

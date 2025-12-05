@@ -48,7 +48,9 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CONSULTAR SALDO");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Numero da conta: ");
 
         CampoNumConta.addActionListener(new java.awt.event.ActionListener() {
@@ -58,27 +60,34 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
         });
 
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
             }
         });
 
+        LabelNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelNome.setText("Nome: ");
 
+        LabelCPF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCPF.setText("CPF:");
 
+        LabelSaldo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelSaldo.setText("Saldo: ");
 
+        LabelTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTipo.setText("Tipo:");
 
         BtnFechar.setText("Voltar");
+        BtnFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnFecharActionPerformed(evt);
             }
         });
 
+        LabelLimite.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelLimite.setText("Limite Cheque Especial: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,21 +99,23 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampoNumConta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnBuscar)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LabelNome)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelCPF)
                             .addComponent(LabelSaldo)
                             .addComponent(LabelTipo))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CampoNumConta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LabelNome)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -136,7 +147,7 @@ public class TelaConsultaSaldo extends javax.swing.JDialog {
                 .addComponent(LabelLimite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnFechar)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

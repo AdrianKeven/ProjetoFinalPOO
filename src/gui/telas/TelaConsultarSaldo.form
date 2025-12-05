@@ -90,6 +90,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelNumConta">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="N&#xfa;mero da conta: "/>
       </Properties>
     </Component>
@@ -108,11 +111,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelTitular">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Titular: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LabelTipo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tipo:"/>
       </Properties>
     </Component>
@@ -126,6 +135,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelCPF">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="CPF:"/>
       </Properties>
     </Component>

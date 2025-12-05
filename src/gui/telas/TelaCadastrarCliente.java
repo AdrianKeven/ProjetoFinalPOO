@@ -42,12 +42,15 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Cliente");
 
+        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtNome.setText("Nome:");
 
+        txtCPF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtCPF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtCPF.setText("CPF:");
 
+        txtEndereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtEndereco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtEndereco.setText("Endereço:");
 
@@ -77,6 +80,7 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
         jPanel1.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
 
         BLimpar.setText("LIMPAR");
+        BLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BLimparActionPerformed(evt);
@@ -84,6 +88,7 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
         });
 
         jButton2.setText("SALVAR");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -91,6 +96,7 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
         });
 
         jButton3.setText("CANCELAR");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -104,7 +110,8 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
             .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(CampoNome)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CampoCPF, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(CampoEndereco, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,13 +127,11 @@ public class TelaCadastrarCliente extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)))
                         .addContainerGap())))
-            .addComponent(CampoCPF, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(CampoEndereco, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(txtNome)

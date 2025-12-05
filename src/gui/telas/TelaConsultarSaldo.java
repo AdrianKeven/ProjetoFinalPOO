@@ -53,6 +53,7 @@ public class TelaConsultarSaldo extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CONSULTAR SALDO");
 
+        LabelNumConta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelNumConta.setText("Número da conta: ");
 
         BotBuscar.setText("Buscar");
@@ -63,13 +64,16 @@ public class TelaConsultarSaldo extends javax.swing.JDialog {
             }
         });
 
+        LabelTitular.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTitular.setText("Titular: ");
 
+        LabelTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelTipo.setText("Tipo:");
 
         LabelCheque.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCheque.setText("Lim.Cheque Especial: ");
 
+        LabelCPF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         LabelCPF.setText("CPF:");
 
         BotLimpar.setText("Limpar");
