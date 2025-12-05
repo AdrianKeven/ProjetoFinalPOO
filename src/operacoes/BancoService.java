@@ -135,18 +135,12 @@ public class BancoService {
     // ---------------------------
     // BUSCAS
     // ---------------------------
-    public Conta buscarConta(String numeroConta) throws ContaNaoEncontradaException {
-        atualizarMapContas();
+    public Conta buscarConta(String numeroConta) throws ContaNaoEncontradaException,SQLException{
+        if (numeroConta.isBlank()) {
+            throw new ContaNaoEncontradaException("Conta nao encontrada");
+        }
 
-        //Log Atualizacao Map
-        System.out.println("Map atualizado");
-
-        Conta conta = contas.get(numeroConta);
-
-        if (conta == null)
-            throw new ContaNaoEncontradaException("Conta não encontrada");
-
-        return conta;
+        return contaDAO.buscarPorNumero(numeroConta);
     }
 
     public Cliente buscarCliente(String cpf) throws ClienteNaoEncontradoException {

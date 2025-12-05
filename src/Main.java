@@ -59,7 +59,7 @@ public class Main {
             // TESTE TRANSFERÊNCIA
             //---------------------------------------
             System.out.println("\n=== TESTE TRANSFERÊNCIA ===");
-            service.realizarTransferencia("1001", "2002", 30.0);
+            service.realizarTransferencia("1001", "2002", 300.0);
 
             double saldoOrigem = contaDAO.buscarSaldoBD("1001");
             double saldoDestino = contaDAO.buscarSaldoBD("2002");
