@@ -155,7 +155,7 @@ public class TelaBuscarCliente extends javax.swing.JDialog {
             
             ResNome.setText(cliente.getNome());
             ResEndereco.setText(cliente.getEndereco());
-            ResConta.setText(String.valueOf(cliente.getContas() == null ? 0 : cliente.getContas().size()));
+            ResConta.setText(String.valueOf(cliente.getContas() == null ? 0 : GuiController.getBancoService().listarTodasContaClinte(cpf).size()));
             
         } catch (Exception e){    
             javax.swing.JOptionPane.showMessageDialog(this,"Nao possui cliente cadastrado");
