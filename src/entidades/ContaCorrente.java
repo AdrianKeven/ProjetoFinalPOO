@@ -26,7 +26,6 @@ public class ContaCorrente extends Conta {
             throw new IllegalArgumentException("Valor de depósito deve ser maior que 0.");
 
         this.saldo += valor;
-        adicionarTransacao(String.format("Depósito: R$ %.2f", valor));
     }
 
     @Override
@@ -37,7 +36,6 @@ public class ContaCorrente extends Conta {
         // Se o saldo é suficiente → saque normal
         if (valor <= saldo) {
             saldo -= valor;
-            adicionarTransacao(String.format("Saque: R$ %.2f", valor));
             return;
         }
 
@@ -49,9 +47,6 @@ public class ContaCorrente extends Conta {
             saldo = 0;
             limiteChequeEspecial -= deficit;
 
-            adicionarTransacao(String.format(
-                    "Saque utilizando cheque especial: R$ %.2f", valor
-            ));
         } else {
             throw new SaldoInsuficienteException(
                     "Saldo insuficiente e limite do cheque especial indisponível."
@@ -64,12 +59,6 @@ public class ContaCorrente extends Conta {
         this.sacar(valor);  // usa lógica correta do cheque especial
         destino.depositar(valor);
 
-        adicionarTransacao(String.format(
-                "Transferência de R$ %.2f para conta %s (Titular: %s)",
-                valor,
-                destino.getNumero(),
-                destino.getProprietario().getNome()
-        ));
     }
 
     @Override

@@ -16,7 +16,6 @@ public class ContaPoupanca extends Conta {
             throw new IllegalArgumentException("Valor de depósito deve ser maior que 0.");
 
         this.saldo += valor;
-        adicionarTransacao(String.format("Depósito: R$ %.2f", valor));
     }
 
     @Override
@@ -28,7 +27,6 @@ public class ContaPoupanca extends Conta {
             throw new SaldoInsuficienteException("Saldo insuficiente para saque.");
 
         saldo -= valor;
-        adicionarTransacao(String.format("Saque: R$ %.2f", valor));
     }
 
     @Override
@@ -36,12 +34,6 @@ public class ContaPoupanca extends Conta {
         this.sacar(valor);
         destino.depositar(valor);
 
-        adicionarTransacao(String.format(
-                "Transferência de R$ %.2f para conta %s (Titular: %s)",
-                valor,
-                destino.getNumero(),
-                destino.getProprietario().getNome()
-        ));
     }
 
     /**
@@ -50,11 +42,6 @@ public class ContaPoupanca extends Conta {
     public void renderJuros() {
         double juros = saldo * TAXA_RENDIMENTO_MENSAL;
         saldo += juros;
-
-        adicionarTransacao(String.format(
-                "Rendimento aplicado: R$ %.2f (taxa %.2f%%)",
-                juros, TAXA_RENDIMENTO_MENSAL * 100
-        ));
     }
 
     @Override

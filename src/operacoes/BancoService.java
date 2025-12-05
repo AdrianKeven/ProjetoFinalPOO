@@ -6,6 +6,7 @@ import utilitarios.ContaNaoEncontradaException;
 import dao.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -214,27 +215,36 @@ public class BancoService {
     // ---------------------------
     // OPERAÇÕES
     // ---------------------------
-    public void realizarDeposito(String numeroConta, double valor) throws ContaNaoEncontradaException, SQLException {
-        buscarConta(numeroConta).depositar(valor);
+    public void realizarDeposito(String numeroConta, double valor)
+            throws ContaNaoEncontradaException, SQLException {
 
-        double novoSaldo = contaDAO.buscarSaldoBD(numeroConta) + valor;
-        contaDAO.atualizarSaldoBD(numeroConta,novoSaldo);
+        Conta conta = buscarConta(numeroConta);
 
-        //Log de Deposito
-        System.out.println("Operacao de Deposito realizada");
-        System.out.println("Saldo da conta: " + contaDAO.buscarSaldoBD(numeroConta));
+        conta.depositar(valor);
+        registrarTransacao(conta, String.format("Depósito de R$ %.2f", valor));
+
+        System.out.println("Depósito realizado.");
+        System.out.println("Saldo atual: " + conta.getSaldo());
     }
 
-    public void realizarSaque(String numeroConta, double valor) throws ContaNaoEncontradaException, SQLException {
-        buscarConta(numeroConta).sacar(valor);
 
-        double novoSaldo = contaDAO.buscarSaldoBD(numeroConta) - valor;
-        contaDAO.atualizarSaldoBD(numeroConta,novoSaldo);
+    public void realizarSaque(String numeroConta, double valor)
+            throws ContaNaoEncontradaException, SQLException {
 
-        //log de Saque
-        System.out.println("Operacao de Saque realizada");
-        System.out.println("Saldo da conta: " + contaDAO.buscarSaldoBD(numeroConta));
+        Conta conta = buscarConta(numeroConta);
+
+        conta.sacar(valor);         // altera saldo em memória
+        contaDAO.atualizar(conta); // salva saldo novo
+
+        registrarTransacao(
+                conta,
+                String.format("Saque de R$ %.2f", valor)
+        );
+
+        System.out.println("Saque realizado.");
+        System.out.println("Saldo atual: " + conta.getSaldo());
     }
+
 
     public void realizarTransferencia(String origem, String destino, double valor)
             throws ContaNaoEncontradaException, SQLException {
@@ -242,18 +252,32 @@ public class BancoService {
         Conta cOrigem = buscarConta(origem);
         Conta cDestino = buscarConta(destino);
 
+        // transfere saldo internamente
         cOrigem.transferir(cDestino, valor);
-        double novoSaldoOrigem = contaDAO.buscarSaldoBD(origem) - valor;
-        double novoSaldoDestino = contaDAO.buscarSaldoBD(destino) + valor;
 
-        contaDAO.atualizarSaldoBD(origem,novoSaldoOrigem);
-        contaDAO.atualizarSaldoBD(destino,novoSaldoDestino);
+        // atualiza ambas no banco
+        contaDAO.atualizar(cOrigem);
+        contaDAO.atualizar(cDestino);
 
-        // log de Transferencia
-        System.out.println("Transferencia realizada");
-        System.out.println("Saldo da origem: " + contaDAO.buscarSaldoBD(origem));
-        System.out.println("Saldo do destino: " + contaDAO.buscarSaldoBD(destino));
+        // histórico origem
+        registrarTransacao(cOrigem,
+                String.format("Transferência de R$ %.2f para conta %s (Titular: %s)",
+                        valor,
+                        cDestino.getNumero(),
+                        cDestino.getProprietario().getNome()));
+
+        // histórico destino
+        registrarTransacao(cDestino,
+                String.format("Recebimento de transferência de R$ %.2f da conta %s (Titular: %s)",
+                        valor,
+                        cOrigem.getNumero(),
+                        cOrigem.getProprietario().getNome()));
+
+        System.out.println("Transferência realizada");
+        System.out.println("Saldo origem: " + cOrigem.getSaldo());
+        System.out.println("Saldo destino: " + cDestino.getSaldo());
     }
+
 
     public void atualizarMapCliente() {
         clienteDAO.atualizarClientesMap(this.clientes);
@@ -264,4 +288,13 @@ public class BancoService {
      public void atualizarConta(Conta conta) throws SQLException {
         atualizarContas(conta);
     }
+
+    private void registrarTransacao(Conta conta, String descricao) throws SQLException {
+        // adiciona no objeto conta
+        conta.adicionarTransacao(descricao);
+
+        // salva no banco incluindo o novo histórico
+        contaDAO.atualizar(conta);
+    }
+
 }

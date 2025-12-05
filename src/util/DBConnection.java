@@ -59,14 +59,15 @@ public class DBConnection {
             """;
 
             String sqlConta = """
-            CREATE TABLE IF NOT EXISTS Conta (
-                numero VARCHAR(20) PRIMARY KEY,
-                saldo DECIMAL(10,2) DEFAULT 0,
-                proprietario_cpf VARCHAR(14) NOT NULL,
-                tipo VARCHAR(20) NOT NULL,
-                limite_cheque_especial DECIMAL(10,2) DEFAULT 0,
-                FOREIGN KEY (proprietario_cpf) REFERENCES Cliente(cpf)
-            );
+                CREATE TABLE IF NOT EXISTS Conta (
+                    numero VARCHAR(20) PRIMARY KEY,
+                    saldo DECIMAL(10,2) DEFAULT 0,
+                    proprietario_cpf VARCHAR(14) NOT NULL,
+                    tipo VARCHAR(20) NOT NULL,
+                    limite_cheque_especial DECIMAL(10,2) DEFAULT 0,
+                    historico TEXT,
+                    FOREIGN KEY (proprietario_cpf) REFERENCES Cliente(cpf)
+                );
             """;
 
 

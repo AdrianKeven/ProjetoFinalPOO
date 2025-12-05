@@ -2,6 +2,9 @@ package entidades;
 
 import dao.ContaDAOJdbc;
 import utilitarios.SaldoInsuficienteException;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -12,33 +15,8 @@ public abstract class Conta {
     private final String numero;
     protected double saldo;
     private Cliente proprietario;
-    private final List<String> historicoTransacoes;
+    private List<String> historicoTransacoes;
     protected String tipo;
-
-//    public Conta(Cliente proprietario, String tipo) {
-//
-//        if (proprietario == null) {
-//            throw new IllegalArgumentException("Proprietário não pode ser nulo.");
-//        }
-//
-//        Random random = new Random();
-//        StringBuilder sb = new StringBuilder();
-//
-//        for (int i = 0; i < 5; i++) {
-//            int numero = random.nextInt(10); // gera número de 0 a 9
-//            sb.append(numero);
-//        }
-//        String numero = sb.toString();
-//
-//        this.proprietario = proprietario;
-//        this.numero = numero.trim();
-//        this.saldo = 0;
-//        this.historicoTransacoes = new ArrayList<>();
-//        this.tipo = tipo.toLowerCase(Locale.ROOT).trim();
-//
-//        // ADICIONA AUTOMATICAMENTE A CONTA AO CLIENTE
-//        proprietario.adicionarConta(this);
-//    }
 
     public Conta(String numero, Cliente proprietario, double saldo, String tipo) {
         if (proprietario == null)
@@ -69,12 +47,21 @@ public abstract class Conta {
     }
 
     public List<String> getHistoricoTransacoes() {
+        if (historicoTransacoes == null) {
+            historicoTransacoes = new ArrayList<>();
+        }
         return historicoTransacoes;
     }
 
-    protected void adicionarTransacao(String descricao) {
-        historicoTransacoes.add(descricao);
+
+    public void setHistoricoTransacoes(List<String> historico) {
+        if (historico == null) {
+            this.historicoTransacoes = new ArrayList<>();
+        } else {
+            this.historicoTransacoes = new ArrayList<>(historico);
+        }
     }
+
 
     public void setSaldoBD(double saldo) {
         this.saldo = saldo;
@@ -103,6 +90,19 @@ public abstract class Conta {
             novoProprietario.adicionarConta(this);
         } catch (Exception ignored) {}
     }
+
+    public void adicionarTransacao(String descricao) {
+        if (historicoTransacoes == null) {
+            historicoTransacoes = new ArrayList<>();
+        }
+
+        String registro = LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+        ) + " - " + descricao;
+
+        historicoTransacoes.add(registro);
+    }
+
 
     public abstract void depositar(double valor);
 
